@@ -1,0 +1,1483 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Flashcards de révision 3e : les aires urbaines en France (G1).">
+<meta name="theme-color" content="#1E3A8A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Révise G1">
+<meta name="format-detection" content="telephone=no">
+<title>Flashcards G1 Aires urbaines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout : une colonne centrée façon « boîte à fiches bristol ». Les cartes sont des fiches lignées, chaque thème a sa couleur d'onglet. */
+:root{
+  --paper:#E8EBEE; --card:#FFFFFF; --ink:#18202C; --ink-2:#4F5B6B; --line:#CBD3DC;
+  --rule:#C9DAEE; --margin:#E6A3A3; --accent:#1E3A8A; --accent-ink:#FFFFFF; --gold:#A86A0C;
+  --ok:#15803D; --mid:#B45309; --ko:#B91C1C; --shadow:rgba(24,32,44,.12);
+  --c-def:#0F766E; --c-reperes:#A15C07; --c-orga:#B42318; --c-etal:#4D7C0F; --c-metro:#1D4ED8; --c-approf:#7C3AED; --c-methode:#7C3AED;
+  --f-display:"Big Shoulders Display","Arial Narrow","Roboto Condensed",Impact,sans-serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#10151C; --card:#19212B; --ink:#E7EBF0; --ink-2:#9DA9B8; --line:#2C3746;
+  --rule:#22334A; --margin:#5C2E2E; --accent:#9DB7FF; --accent-ink:#0E1626; --gold:#E3B252;
+  --ok:#4ADE80; --mid:#FBBF24; --ko:#F87171; --shadow:rgba(0,0,0,.45);
+  --c-def:#2DD4BF; --c-reperes:#F0B429; --c-orga:#F87171; --c-etal:#A3E635; --c-metro:#7EA6FF; --c-approf:#B794F6; --c-methode:#B794F6;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#10151C; --card:#19212B; --ink:#E7EBF0; --ink-2:#9DA9B8; --line:#2C3746;
+  --rule:#22334A; --margin:#5C2E2E; --accent:#9DB7FF; --accent-ink:#0E1626; --gold:#E3B252;
+  --ok:#4ADE80; --mid:#FBBF24; --ko:#F87171; --shadow:rgba(0,0,0,.45);
+  --c-def:#2DD4BF; --c-reperes:#F0B429; --c-orga:#F87171; --c-etal:#A3E635; --c-metro:#7EA6FF; --c-approf:#B794F6; --c-methode:#B794F6;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{min-height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:20px 56px}
+h1,h2,h3{text-wrap:balance;margin:0}
+.mono{font-family:var(--f-mono)}
+.muted{color:var(--ink-2)}
+
+/* ---------- Barre du haut ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.tab-h2{font-family:var(--f-display);font-weight:900;font-size:30px;line-height:1;padding:6px 10px 4px;border:2.5px solid var(--ink);border-radius:4px;letter-spacing:.02em}
+.brand-txt{min-width:0}
+.brand-txt b{display:block;font-family:var(--f-display);font-weight:800;font-size:21px;line-height:1.05;letter-spacing:.01em;text-transform:uppercase}
+.brand-txt span{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);letter-spacing:.06em;text-transform:uppercase}
+.navbtns{display:flex;gap:8px}
+.ghost{background:transparent;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.ghost:hover{border-color:var(--ink-2)}
+
+/* ---------- Tableau de bord ---------- */
+.dash{background:var(--card);border-radius:14px;box-shadow:0 1px 0 var(--line),0 10px 30px -18px var(--shadow);padding:20px;display:grid;gap:18px}
+.player{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.lvl{width:66px;height:66px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);font-family:var(--f-display);font-weight:900;font-size:32px;line-height:1;position:relative}
+.lvl small{position:absolute;bottom:-8px;font-family:var(--f-mono);font-size:10px;background:var(--card);color:var(--ink);border:1.5px solid var(--accent);border-radius:999px;padding:1px 7px;letter-spacing:.06em}
+.pinfo{flex:1;min-width:200px}
+.pname{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.pname h2{font-family:var(--f-display);font-weight:800;font-size:26px;line-height:1.1;text-transform:uppercase;letter-spacing:.01em}
+.namefield{display:flex;gap:6px;align-items:center;margin-top:2px}
+.namefield input{font:inherit;font-size:16px;padding:5px 10px;border:1.5px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);width:180px;max-width:100%}
+.xpbar{height:12px;border-radius:999px;background:var(--paper);overflow:hidden;margin-top:8px;border:1px solid var(--line)}
+.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:999px;transition:width .6s ease}
+.xptxt{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:12px;color:var(--ink-2);margin-top:4px;font-variant-numeric:tabular-nums}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat{border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.stat b{display:block;font-family:var(--f-display);font-weight:900;font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--ink-2);line-height:1.25;display:block;margin-top:3px}
+.stat.ready b{color:var(--ok)}
+.stat.fire b{color:var(--mid)}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+.sec-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:26px 0 10px;flex-wrap:wrap}
+.sec-title h3{font-family:var(--f-display);font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.02em}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);font-weight:700;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+
+/* Thèmes = onglets de boîte à fiches */
+.themes{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.theme{--c:var(--accent);text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:12px 12px 10px;display:grid;gap:6px;position:relative;transition:border-color .15s,transform .15s}
+.theme:hover{transform:translateY(-1px)}
+.theme[aria-pressed="true"]{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c);background:var(--card);background:color-mix(in srgb,var(--c) 7%,var(--card))}
+.theme .th-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.theme .th-name{font-weight:700;font-size:15.5px;line-height:1.2;color:var(--ink)}
+.chk{width:20px;height:20px;border-radius:5px;border:2px solid var(--line);flex:none;display:grid;place-items:center}
+.theme[aria-pressed="true"] .chk{background:var(--c);border-color:var(--c)}
+.theme[aria-pressed="true"] .chk::after{content:"";width:10px;height:5px;border-left:2.5px solid var(--card);border-bottom:2.5px solid var(--card);transform:rotate(-45deg) translate(1px,-1px)}
+.th-meta{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.mbar{height:6px;border-radius:999px;background:var(--paper);overflow:hidden}
+.mbar i{display:block;height:100%;background:var(--c);border-radius:999px}
+.theme .dot{width:10px;height:10px;border-radius:50%;background:var(--c);display:inline-block;margin-right:7px;vertical-align:1px}
+
+/* Modes */
+.modes{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (max-width:700px){.modes{grid-template-columns:1fr}}
+.mode{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;align-content:start}
+.mode h4{margin:0;font-family:var(--f-display);font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.02em;display:flex;align-items:center;gap:8px}
+.mode p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.4}
+.seg{display:flex;gap:4px;background:var(--paper);border-radius:999px;padding:3px;width:max-content;max-width:100%}
+.seg button{border:0;background:transparent;border-radius:999px;padding:4px 11px;font-size:13px;font-weight:700;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px var(--shadow)}
+.go{background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:11px 14px;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .12s,filter .12s}
+.go:hover{filter:brightness(1.08)}
+.go:active{transform:scale(.98)}
+.go.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.go[disabled]{opacity:.45;cursor:not-allowed}
+.review-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px;padding:12px 14px;border-radius:10px;border:1.5px dashed var(--ko);background:var(--card);background:color-mix(in srgb,var(--ko) 6%,var(--card))}
+.review-banner p{margin:0;font-size:14.5px;min-width:0}
+.review-banner .go{background:var(--ko);color:var(--card)}
+
+.badge-strip{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---------- Session ---------- */
+.sess-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.prog{flex:1;height:10px;background:var(--card);border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);transition:width .35s ease}
+.sess-count{font-family:var(--f-mono);font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.combo{font-family:var(--f-display);font-weight:900;font-size:19px;color:var(--mid);min-width:64px;text-align:right;letter-spacing:.02em}
+.combo.pop{animation:pop .35s ease}
+@keyframes pop{50%{transform:scale(1.35)}}
+
+.stage{perspective:1600px}
+.flip{display:grid;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.75,.25,1);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.flip.flipped{transform:rotateY(180deg)}
+.face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card);border-radius:14px;box-shadow:0 1px 0 var(--line),0 18px 40px -22px var(--shadow);min-height:340px;display:flex;flex-direction:column;overflow:hidden;--c:var(--accent)}
+.face.back{transform:rotateY(180deg)}
+/* fiche bristol : lignes bleues + marge rouge */
+.ruled{flex:1;display:flex;flex-direction:column;padding:22px 22px 18px 44px;position:relative;
+  background-image:linear-gradient(var(--card) 0 0),repeating-linear-gradient(to bottom,transparent 0 27px,var(--rule) 27px 28px);
+  background-size:2px 100%,100% 100%;background-repeat:no-repeat;background-position:30px 0,0 6px}
+.ruled::before{content:"";position:absolute;left:32px;top:0;bottom:0;width:1.5px;background:var(--margin)}
+.fhead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 16px;border-bottom:3px solid var(--c);background:var(--card);background:color-mix(in srgb,var(--c) 9%,var(--card))}
+.ftag{font-family:var(--f-mono);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.fbox{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2);display:flex;gap:3px;align-items:center}
+.fbox i{width:8px;height:8px;border-radius:2px;background:var(--line);display:inline-block}
+.fbox i.on{background:var(--c)}
+.q{font-weight:700;font-size:clamp(21px,3.6vw,28px);line-height:1.3;margin:auto 0;text-wrap:balance;padding-block:18px}
+.hint{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);text-align:center;letter-spacing:.04em;margin-top:auto}
+.ans-label{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--c);font-weight:600}
+.ans{font-weight:700;font-size:clamp(18px,2.8vw,22px);line-height:1.35;margin:4px 0 10px}
+.det{font-size:15.5px;line-height:1.6;margin:0 0 12px;color:var(--ink)}
+.det ul{margin:4px 0;padding-left:20px}
+.plus{margin-top:auto;border-radius:10px;padding:10px 12px;background:var(--card);background:color-mix(in srgb,var(--c-approf) 8%,var(--card));border:1px solid color-mix(in srgb,var(--c-approf) 30%,var(--card));font-size:14.5px;line-height:1.5}
+.plus b.lab{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-approf);margin-bottom:2px}
+.qback{font-size:13.5px;color:var(--ink-2);margin:0 0 6px;font-style:italic}
+
+.rate{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.rate button{border:2px solid var(--line);background:var(--card);border-radius:12px;padding:12px 8px;font-weight:700;font-size:15px;display:grid;gap:2px;justify-items:center;transition:transform .1s}
+.rate button small{font-family:var(--f-mono);font-size:11px;font-weight:500;color:var(--ink-2)}
+.rate button:active{transform:scale(.97)}
+.rate .r0{border-color:var(--ko);color:var(--ko)}
+.rate .r1{border-color:var(--mid);color:var(--mid)}
+.rate .r2{border-color:var(--ok);color:var(--ok)}
+.rate .r0:hover{background:var(--card);background:color-mix(in srgb,var(--ko) 8%,var(--card))}
+.rate .r1:hover{background:var(--card);background:color-mix(in srgb,var(--mid) 8%,var(--card))}
+.rate .r2:hover{background:var(--card);background:color-mix(in srgb,var(--ok) 8%,var(--card))}
+.reveal{margin-top:14px;width:100%}
+.keys{text-align:center;font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2);margin-top:10px}
+@media (hover:none){.keys{display:none}}
+.xpfloat{position:fixed;left:50%;top:40%;transform:translateX(-50%);font-family:var(--f-display);font-weight:900;font-size:38px;color:var(--gold);pointer-events:none;animation:xpf .9s ease forwards;z-index:30;text-shadow:0 2px 0 var(--card)}
+@keyframes xpf{0%{opacity:0;transform:translate(-50%,10px)}20%{opacity:1}100%{opacity:0;transform:translate(-50%,-60px)}}
+
+/* QCM */
+.qcm-opts{display:grid;gap:10px;margin-top:14px}
+.opt{text-align:left;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15.5px;line-height:1.4;display:flex;gap:12px;align-items:flex-start}
+.opt .l{font-family:var(--f-mono);font-weight:600;width:26px;height:26px;flex:none;border-radius:6px;display:grid;place-items:center;background:var(--paper);font-size:13px}
+.opt:hover:not([disabled]){border-color:var(--ink-2)}
+.opt.good{border-color:var(--ok);background:var(--card);background:color-mix(in srgb,var(--ok) 10%,var(--card))}
+.opt.bad{border-color:var(--ko);background:var(--card);background:color-mix(in srgb,var(--ko) 10%,var(--card))}
+.opt[disabled]{cursor:default}
+.feedback{margin-top:12px;border-radius:12px;padding:12px 14px;background:var(--card);border-left:5px solid var(--ok);font-size:15px}
+.feedback.ko{border-left-color:var(--ko)}
+.feedback b.v{display:block;font-family:var(--f-display);font-size:20px;text-transform:uppercase;letter-spacing:.02em}
+.timer{height:4px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:-2px}
+.timer i{display:block;height:100%;background:var(--gold);width:100%}
+
+/* Frise */
+.frise-pool{display:grid;gap:10px;margin-top:14px}
+.ev{text-align:left;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;font-size:15.5px;line-height:1.35;--c:var(--accent)}
+.ev .n{width:32px;height:32px;flex:none;border-radius:50%;border:2px dashed var(--line);display:grid;place-items:center;font-family:var(--f-display);font-weight:900;font-size:19px}
+.ev.picked{border-color:var(--accent)}
+.ev.picked .n{border:0;background:var(--accent);color:var(--accent-ink)}
+.ev .tg{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--c);display:block}
+.ev .yr{margin-left:auto;font-family:var(--f-mono);font-weight:600;font-size:13px;white-space:nowrap}
+.ev.right{border-color:var(--ok)}
+.ev.wrong{border-color:var(--ko)}
+.ev.right .n{background:var(--ok);color:var(--card)}
+.ev.wrong .n{background:var(--ko);color:var(--card)}
+.timeline{position:relative;margin-top:16px;padding-left:22px;display:grid;gap:10px}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:3px;background:var(--line);border-radius:2px}
+.tl{position:relative;font-size:15px}
+.tl::before{content:"";position:absolute;left:-20px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--c,var(--accent));border:2px solid var(--card)}
+.tl b{font-family:var(--f-mono);font-size:13px;margin-right:8px}
+
+/* Fin de session */
+.endcard{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 1px 0 var(--line),0 18px 40px -22px var(--shadow);display:grid;gap:16px}
+.endcard h2{font-family:var(--f-display);font-weight:900;font-size:clamp(30px,6vw,44px);text-transform:uppercase;line-height:1}
+.endstats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:560px){.endstats{grid-template-columns:repeat(2,1fr)}}
+.endstats .stat b.k{color:var(--ko)} .endstats .stat b.m{color:var(--mid)} .endstats .stat b.o{color:var(--ok)} .endstats .stat b.x{color:var(--gold)}
+.miss{display:grid;gap:8px}
+.miss details{border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;--c:var(--accent)}
+.miss summary{cursor:pointer;font-weight:700;font-size:15px;list-style-position:outside}
+.miss summary .ftag{margin-right:8px}
+.miss details p{margin:8px 0 0;font-size:15px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row .go{flex:1;min-width:180px}
+
+/* Badges */
+.medal{width:92px;display:grid;justify-items:center;gap:6px;text-align:center}
+.medal .disc{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--gold) 55%,var(--card)),var(--gold));color:var(--card);box-shadow:inset 0 -3px 0 rgba(0,0,0,.18),0 0 0 3px var(--card),0 0 0 5px var(--gold)}
+.medal .disc svg{width:30px;height:30px}
+.medal span{font-size:12px;font-weight:700;line-height:1.2}
+.medal.locked .disc{background:var(--paper);color:var(--ink-2);box-shadow:inset 0 0 0 2px var(--line);opacity:.8}
+.medal.locked span{color:var(--ink-2);font-weight:400}
+.badges-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.bitem{display:flex;gap:12px;align-items:center;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:12px}
+.bitem .medal{width:auto}
+.bitem .medal .disc{width:52px;height:52px}
+.bitem .medal .disc svg{width:24px;height:24px}
+.bitem b{display:block;font-size:15px}
+.bitem p{margin:0;font-size:13px;color:var(--ink-2);line-height:1.35}
+.bitem.locked b{color:var(--ink-2)}
+.bilan{background:var(--card);border-radius:14px;padding:20px;border:2px solid var(--ink);display:grid;gap:12px;position:relative;overflow:hidden}
+.bilan .stamp{position:absolute;right:14px;top:14px;transform:rotate(8deg);border:3px solid var(--ok);color:var(--ok);font-family:var(--f-display);font-weight:900;font-size:18px;text-transform:uppercase;padding:2px 10px;border-radius:6px;letter-spacing:.04em}
+.bilan h2{font-family:var(--f-display);font-weight:900;font-size:28px;text-transform:uppercase;padding-right:120px}
+.tbars{display:grid;gap:7px}
+.tbar{display:grid;grid-template-columns:150px 1fr 44px;gap:10px;align-items:center;font-size:14px;--c:var(--accent)}
+.tbar .mbar{height:9px}
+.tbar b{font-family:var(--f-mono);font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:480px){.tbar{grid-template-columns:110px 1fr 40px;font-size:13px}}
+.danger{background:none;border:1.5px solid var(--ko);color:var(--ko);border-radius:8px;padding:7px 12px;font-weight:700;font-size:13.5px}
+.confirm-box{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:14px}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(140%);background:var(--ink);color:var(--paper);border-radius:14px;padding:12px 16px 12px 12px;display:flex;align-items:center;gap:12px;z-index:40;transition:transform .45s cubic-bezier(.2,.9,.3,1.2);max-width:calc(100% - 32px);box-shadow:0 12px 30px -10px var(--shadow)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast .medal .disc{width:46px;height:46px;box-shadow:0 0 0 2px var(--ink),0 0 0 4px var(--gold)}
+.toast .medal .disc svg{width:22px;height:22px}
+.toast small{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.toast b{font-size:16px}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:35}
+.foot{margin-top:34px;font-size:12.5px;color:var(--ink-2);text-align:center;font-family:var(--f-mono)}
+.fade-in{animation:fin .3s ease}
+@keyframes fin{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .flip{transform:none!important}
+  .face.back{transform:none}
+  .flip .face.back{visibility:hidden}
+  .flip.flipped .face.front{visibility:hidden}
+  .flip.flipped .face.back{visibility:visible}
+}
+
+.plan{display:grid;gap:8px;margin-top:2px}
+.plan>div{border-radius:8px;padding:8px 10px;background:var(--card);background:color-mix(in srgb,var(--c-methode) 7%,var(--card));border:1px solid color-mix(in srgb,var(--c-methode) 25%,var(--card));line-height:1.45}
+.plan>div b{display:block;font-size:.95em}
+.plan .pl-i{background:transparent;border-style:dashed}
+.plan .pl-p b{color:var(--c-methode);text-transform:uppercase;letter-spacing:.02em}
+
+.how{margin-top:16px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px}
+.how h3{font-family:var(--f-display);font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.02em;margin:0 0 8px}
+.how ol{margin:0;padding:0;list-style:none;counter-reset:st;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.how li{counter-increment:st;font-size:14.5px;line-height:1.4;display:grid;gap:4px;align-content:start;min-width:0}
+.how li::before{content:counter(st);width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--f-display);font-weight:900;font-size:17px}
+.how p{margin:12px 0 0;font-size:14px;color:var(--ink-2)}
+@media (max-width:640px){.how ol{grid-template-columns:1fr 1fr}}
+
+/* Tactile : pas de zoom au double appui, pas de surlignage gris, pas de sélection en touchant la carte */
+button,.flip,.opt,.ev,.theme{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.flip{-webkit-user-select:none;user-select:none}
+/* Les boutons de notation restent visibles en bas de l'écran, même si le corrigé est long */
+#actions{position:sticky;bottom:0;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,var(--paper) 70%,transparent);z-index:3}
+#actions .rate,#actions .reveal{margin-top:10px}
+/* Écrans peu hauts (téléphone à l'horizontale) */
+@media (max-height:520px){
+  .face{min-height:200px}
+  .q{padding-block:8px;font-size:20px}
+  .ruled{padding-top:12px;padding-bottom:10px}
+  .wrap{padding-block:10px 30px}
+  .rate button{padding:8px 6px}
+}
+/* Tablettes : 4 colonnes de thèmes */
+@media (min-width:760px) and (max-width:1100px){.themes{grid-template-columns:repeat(4,1fr)}}
+
+.namefield select{font:inherit;font-size:16px;padding:5px 10px;border:1.5px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);max-width:100%}
+.namefield select.need{border-color:var(--mid);box-shadow:0 0 0 2px color-mix(in srgb,var(--mid) 25%,transparent)}
+.namefield{flex-wrap:wrap}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:3px 10px 3px 8px}
+.chip svg{color:var(--accent);flex:none}
+
+.mode.exam{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.veille{justify-self:start;font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);border:1.5px solid var(--mid);border-radius:999px;padding:2px 10px}
+.opt.chosen{border-color:var(--accent);background:var(--card);background:color-mix(in srgb,var(--accent) 10%,var(--card))}
+.opt.chosen .l{background:var(--accent);color:var(--accent-ink)}
+.note20{font-size:clamp(56px,12vw,84px)!important;color:var(--accent)}
+.note20 small{font-size:.4em;color:var(--ink-2);margin-left:4px}
+.review-banner.today{margin-top:0;margin-bottom:14px;border-style:solid;border-color:var(--mid);background:var(--card);background:color-mix(in srgb,var(--mid) 8%,var(--card))}
+.review-banner.today .go{background:var(--mid);color:var(--card)}
+
+/* ---------- Modes géographie (G1) ---------- */
+.rate.two{grid-template-columns:1fr 1fr}
+.rate.two button{font-family:var(--f-display);font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.03em;padding:14px 8px}
+.rate.two button small{font-family:var(--f-mono);text-transform:none;letter-spacing:0;font-size:11px;font-weight:500}
+.rate button[disabled]{cursor:default;opacity:.5}
+.rate button.picked{opacity:1;background:var(--card);background:color-mix(in srgb,currentColor 10%,var(--card))}
+.sch{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:14px;align-items:start;margin-top:14px}
+.sch-draw{background:#FFFDF7;border-radius:14px;box-shadow:0 1px 0 var(--line),0 18px 40px -22px var(--shadow);padding:12px;position:sticky;top:10px}
+.sch-draw .ftag{display:block;text-align:center;color:#1E3A8A;margin-bottom:4px}
+.sch-draw svg{display:block;width:100%;height:auto}
+@media (max-width:720px){.sch{grid-template-columns:1fr}.sch-draw{position:static;max-width:420px;margin:0 auto;width:100%}}
+.leg{padding:6px 16px 14px}
+.leg h5{margin:12px 0 4px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.lrow{display:flex;align-items:center;gap:10px;margin:6px 0}
+.fig{width:46px;flex:none;display:grid;place-items:center}
+.sw{width:42px;height:22px;border-radius:4px;border:1px solid rgba(0,0,0,.25)}
+.fig svg{width:46px;height:18px}
+.eqt{flex:none;width:150px;font-size:13px;color:var(--ink-2);line-height:1.25}
+.slot{flex:1;min-width:0;min-height:42px;border:2px dashed var(--line);border-radius:10px;display:flex;align-items:center;padding:3px;transition:border-color .15s,background .15s;cursor:pointer}
+.slot:empty::before{content:"…";color:var(--ink-2);padding-left:10px;font-family:var(--f-mono)}
+.slot.hover,.sch.target .slot:empty{border-color:var(--accent);background:var(--card);background:color-mix(in srgb,var(--accent) 8%,var(--card))}
+.slot.good{border-style:solid;border-color:var(--ok);background:var(--card);background:color-mix(in srgb,var(--ok) 10%,var(--card))}
+.slot.bad{border-style:solid;border-color:var(--ko);background:var(--card);background:color-mix(in srgb,var(--ko) 10%,var(--card))}
+.lbl{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:999px;background:var(--card);border:2px solid var(--ink);font-weight:700;font-size:14px;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;line-height:1.2;text-align:center}
+.lbl.sel{background:var(--ink);color:var(--card)}
+.lbl.dragging{opacity:.3}
+.slot .lbl{width:100%;border-radius:8px;border-width:1.5px}
+.bank{display:flex;flex-wrap:wrap;gap:8px;padding:12px;min-height:60px;margin-top:12px;background:var(--card);border:1.5px dashed var(--line);border-radius:12px}
+.bank:empty::before{content:"Toutes les étiquettes sont placées : vérifiez votre schéma !";color:var(--ink-2);font-size:14px;padding:6px}
+.dragghost{position:fixed;pointer-events:none;z-index:60;transform:translate(-50%,-50%) rotate(-3deg);box-shadow:0 10px 24px var(--shadow)}
+.corr{font-size:12.5px;color:var(--ko);font-weight:700;margin:-2px 0 4px 56px}
+.corr.eqc{margin-left:160px}
+.feedback ul{margin:6px 0 8px;padding-left:20px}
+.feedback li{margin:3px 0}
+.subj{display:grid;gap:10px;margin-top:14px}
+.skel{display:grid;gap:3px;margin-top:6px}
+.skel div{font-weight:700;font-size:15px}
+.skel b{font-family:var(--f-mono);color:var(--c-methode);margin-right:8px}
+.idea{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;gap:12px;align-items:center;margin-top:8px}
+.idea p{margin:0;flex:1;font-size:15px;line-height:1.4}
+.idea .why{display:block;font-size:13px;font-weight:700;color:var(--ko);margin-top:3px}
+.idea.right{border-color:var(--ok)}
+.idea.wrong{border-color:var(--ko)}
+.idea .seg button{min-width:40px;padding:6px 10px;font-size:14px}
+.idea .seg button[disabled]{cursor:default}
+.plan ul{margin:2px 0 0;padding-left:18px}
+@media (max-width:560px){.idea{flex-direction:column;align-items:stretch}.idea .seg{align-self:flex-end}.eqt{width:112px}.corr.eqc{margin-left:0}}
+</style>
+
+</head>
+<body>
+<script>
+/* Adresse du récepteur Google Sheets (statistiques anonymes) */
+window.G1_STATS_URL = "https://script.google.com/macros/s/AKfycbyyIpY59EXu05C_mLzop50w94Vpw6fELQXTQHtWFP5DZQ3N7KXNg0njtVo8RPXj_DIG/exec";
+</script>
+<main class="wrap" id="app" aria-live="polite"></main>
+<noscript><p style="padding:16px">Active JavaScript pour utiliser les flashcards.</p></noscript>
+<script>
+const THEMES = {
+  def:     {label:"Définitions",                    short:"Définition",      color:"var(--c-def)"},
+  reperes: {label:"Repères et lieux",               short:"Repère",          color:"var(--c-reperes)"},
+  orga:    {label:"Organisation de l'aire urbaine", short:"Organisation",    color:"var(--c-orga)"},
+  etal:    {label:"L'étalement urbain",             short:"Étalement",       color:"var(--c-etal)"},
+  metro:   {label:"La métropolisation",             short:"Métropolisation", color:"var(--c-metro)"},
+  methode: {label:"Sujets possibles",               short:"Sujet possible",  color:"var(--c-methode)"}
+};
+
+/* t = thème, q = question, a = réponse, d = corrigé détaillé, p = pour aller plus loin,
+   s = bonne réponse courte (QCM), x = 3 mauvaises réponses (QCM),
+   aj = contenu ajouté (hors cours et fiche) : à garder ou à supprimer */
+const CARDS = [
+/* ================= DÉFINITIONS ================= */
+{id:"d1",t:"def",q:"Définissez : <b>aire urbaine</b>",a:"Ensemble formé par une ville-centre, sa banlieue et sa couronne périurbaine.",d:"Aire urbaine = <b>agglomération</b> (ville-centre + banlieue) + <b>couronne périurbaine</b>.",
+ s:"Ensemble formé par une ville-centre, sa banlieue et sa couronne périurbaine",x:["Ensemble formé par la ville-centre et sa banlieue seulement","Ensemble des communes rurales d'un département","Le quartier des affaires d'une grande ville"]},
+{id:"d2",t:"def",q:"Définissez : <b>agglomération</b> (= pôle urbain)",a:"Ensemble formé par la ville-centre et sa banlieue.",d:"Attention au piège : l'agglomération ne comprend <b>pas</b> la couronne périurbaine.",
+ s:"Ensemble formé par la ville-centre et sa banlieue",x:["Ensemble formé par la ville-centre, la banlieue et la couronne périurbaine","Ensemble des communes rurales autour d'une ville","Le centre historique d'une ville"]},
+{id:"d3",t:"def",q:"Définissez : <b>couronne périurbaine</b>",a:"Espace qui regroupe des communes dans lesquelles au moins 40 % de la population a un emploi dans l'agglomération.",d:"On y trouve surtout des <b>pavillons avec jardins</b>.",
+ s:"Communes où au moins 40 % de la population a un emploi dans l'agglomération",x:["Communes où au moins 40 % de la population travaille dans l'agriculture","Quartiers de grands ensembles autour de la ville-centre","Le centre historique et ses immeubles anciens"]},
+{id:"d4",t:"def",q:"Définissez : <b>étalement urbain</b> (= périurbanisation)",a:"Expansion des constructions urbaines le long des axes de communication et sur le milieu rural.",p:"Exemple : le long de l'A48 et de la rocade sud à Grenoble.",
+ s:"Expansion des constructions urbaines le long des axes de communication et sur le milieu rural",x:["Concentration des hommes et des activités dans les métropoles","Déplacements quotidiens entre le domicile et le travail","Rénovation des immeubles anciens du centre-ville"]},
+{id:"d5",t:"def",q:"Définissez : <b>migrations pendulaires</b>",a:"Ensemble des déplacements quotidiens entre le domicile et le lieu de travail (ou d'études).",p:"« Pendulaire » : comme le balancier d'une horloge, on part le matin et on revient le soir, chaque jour.",
+ s:"Déplacements quotidiens entre le domicile et le lieu de travail (ou d'études)",x:["Départ définitif des habitants vers une autre région","Déplacements des touristes pendant les vacances","Expansion des constructions sur le milieu rural"]},
+{id:"d6",t:"def",q:"Définissez : <b>métropole</b>",a:"Grande ville qui concentre la population et les activités, et qui exerce une influence sur les territoires alentours.",p:"Exemples : Paris, Lyon, Marseille, Toulouse.",
+ s:"Grande ville qui concentre population et activités et influence les territoires alentours",x:["Petite commune rurale proche d'une grande ville","Quartier de grands ensembles en banlieue","Ensemble des communes d'un même département"]},
+{id:"d7",t:"def",q:"Définissez : <b>métropolisation</b>",a:"Concentration des hommes et des activités dans les métropoles.",d:"Les métropoles concentrent les pouvoirs politiques, les emplois, les lieux culturels et les transports.",
+ s:"Concentration des hommes et des activités dans les métropoles",x:["Expansion des constructions sur le milieu rural","Départ des habitants des villes vers les campagnes","Déplacements quotidiens entre le domicile et le travail"]},
+{id:"d8",t:"def",q:"Définissez : <b>ville-centre</b>",a:"Le cœur de l'aire urbaine : centre historique, immeubles anciens, commerces, lieux de pouvoir, quartier des affaires.",
+ s:"Le cœur de l'aire urbaine : centre historique, lieux de pouvoir, commerces",x:["Les communes rurales au-delà de l'aire urbaine","Les lotissements pavillonnaires éloignés du centre","Les zones industrielles de la périphérie"]},
+{id:"d9",t:"def",q:"Définissez : <b>banlieue</b>",a:"Les communes urbanisées autour de la ville-centre : grands ensembles, pavillons, centres commerciaux, usines et zones industrielles.",
+ s:"Les communes urbanisées autour de la ville-centre",x:["Le centre historique de la ville","Les espaces agricoles au-delà de l'aire urbaine","Les communes de moins de 100 habitants"]},
+{id:"d10",t:"def",q:"Définissez : <b>espace rural</b>",a:"Les espaces agricoles et naturels situés au-delà de l'aire urbaine.",
+ s:"Les espaces agricoles et naturels au-delà de l'aire urbaine",x:["Les parcs et jardins de la ville-centre","Les zones commerciales de la banlieue","Les communes de la couronne périurbaine"]},
+{id:"d11",t:"def",q:"Définissez : <b>croissance démographique</b>",a:"Augmentation de la population.",d:"Les aires urbaines connaissent toujours une croissance démographique importante.",
+ s:"Augmentation de la population",x:["Diminution de la population","Augmentation du nombre d'entreprises","Construction de nouvelles routes"]},
+{id:"d14",t:"def",q:"Définissez : <b>quartier des affaires</b>",a:"Quartier qui regroupe les bureaux et les sièges sociaux des grandes entreprises.",d:"Exemples : <b>La Défense</b> à Paris, <b>La Part-Dieu</b> à Lyon.",
+ s:"Quartier qui regroupe les bureaux et les sièges sociaux des entreprises",x:["Quartier qui regroupe les usines","Quartier de maisons individuelles","Quartier de commerces anciens et de musées"]},
+
+/* ================= REPÈRES ET LIEUX ================= */
+{id:"r1",t:"reperes",q:"Citez les <b>10 principales aires urbaines</b> françaises.",a:"Paris · Lyon · Marseille · Lille · Toulouse · Bordeaux · Nantes · Strasbourg · Nice · Rennes.",p:"Astuce : apprenez-les en les plaçant sur une carte, du nord au sud."},
+{id:"r2",t:"reperes",q:"Quelle est la <b>première aire urbaine</b> française ?",a:"Paris.",d:"De très loin, devant Lyon et Marseille.",s:"Paris",x:["Lyon","Marseille","Lille"]},
+{id:"r4",t:"reperes",q:"Citez les <b>pays limitrophes</b> de la France métropolitaine.",a:"Belgique · Luxembourg · Allemagne · Suisse · Italie · Espagne.",p:"Il faut aussi ajouter deux micro-États : Andorre et Monaco."},
+{id:"r6",t:"reperes",q:"Citez les <b>5 grands fleuves</b> français.",a:"Seine · Loire · Rhône · Garonne · Rhin."},
+{id:"r8",t:"reperes",q:"Quel fleuve traverse <b>Paris</b> ?",a:"La Seine.",s:"La Seine",x:["La Loire","Le Rhône","La Garonne"]},
+{id:"r9",t:"reperes",q:"Quel fleuve traverse <b>Lyon</b> ?",a:"Le Rhône.",d:"Il y rejoint la Saône.",s:"Le Rhône",x:["La Seine","La Loire","Le Rhin"]},
+{id:"r10",t:"reperes",q:"Quel fleuve traverse <b>Bordeaux</b> ?",a:"La Garonne.",s:"La Garonne",x:["La Loire","La Seine","Le Rhône"]},
+{id:"r12",t:"reperes",q:"Quels <b>mers et océan</b> bordent la France métropolitaine ?",a:"Océan Atlantique · Manche · Mer Méditerranée · Mer du Nord."},
+{id:"r13",t:"reperes",q:"Quelle mer borde <b>Marseille</b> et <b>Nice</b> ?",a:"La mer Méditerranée.",s:"La mer Méditerranée",x:["La Manche","La mer du Nord","L'océan Atlantique"]},
+{id:"r14",t:"reperes",q:"Quelle part des Français vit dans une <b>aire urbaine</b> en 2020 ?",a:"93 %.",d:"La France est un territoire très urbanisé.",s:"93 %",x:["53 %","73 %","33 %"]},
+{id:"r15",t:"reperes",q:"Où se concentrent les grandes aires urbaines françaises ?",a:"Sur les littoraux, dans les vallées des fleuves et près des frontières.",d:"Littoraux (Bordeaux, Marseille), fleuves (Paris, Lyon), frontières (Lille, Strasbourg) : la répartition est <b>inégale</b>.",
+ s:"Sur les littoraux, dans les vallées des fleuves et près des frontières",x:["Surtout dans les montagnes","Uniquement au centre du pays","De façon égale sur tout le territoire"]},
+{id:"r18",t:"reperes",q:"Quel <b>pourcentage minimum</b> de la population doit travailler dans l'agglomération pour qu'une commune soit dans la couronne périurbaine ?",a:"Au moins 40 %.",s:"Au moins 40 %",x:["Au moins 10 %","Au moins 75 %","100 %"]},
+{id:"r19",t:"reperes",q:"Près de quel pays se trouve <b>Lille</b> ?",a:"La Belgique.",s:"La Belgique",x:["L'Allemagne","La Suisse","L'Espagne"]},
+
+/* ================= ORGANISATION DE L'AIRE URBAINE ================= */
+{id:"o1",t:"orga",q:"Que trouve-t-on dans la <b>ville-centre</b> ?",a:"Le centre historique, des immeubles anciens, des commerces, des lieux de pouvoir, le quartier des affaires et des lieux culturels.",d:"Exemples : l'hôtel de ville, l'Assemblée nationale à Paris, La Part-Dieu à Lyon, le Louvre.",
+ s:"Centre historique, immeubles anciens, lieux de pouvoir, quartier des affaires",x:["Grands ensembles, usines et zones industrielles","Lotissements pavillonnaires et champs","Exploitations agricoles et forêts"]},
+{id:"o2",t:"orga",q:"Que trouve-t-on en <b>banlieue</b> ?",a:"Des grands ensembles, des pavillons, des centres commerciaux, des usines et des zones industrielles.",d:"Exemple : les grands ensembles de Saint-Martin-d'Hères, près de Grenoble.",
+ s:"Grands ensembles, pavillons, centres commerciaux, zones industrielles",x:["Centre historique et immeubles anciens","Exploitations agricoles et forêts","Uniquement des champs et quelques fermes"]},
+{id:"o3",t:"orga",q:"Que trouve-t-on dans la <b>couronne périurbaine</b> ?",a:"Des lotissements pavillonnaires avec jardins, dans des communes rurales dont au moins 40 % des actifs travaillent dans l'agglomération.",
+ s:"Des lotissements pavillonnaires avec jardins, dans des communes rurales",x:["Des grands ensembles et le quartier des affaires","Le centre historique et les musées","Les ministères et le palais de justice"]},
+{id:"o4",t:"orga",q:"Quelle différence entre <b>agglomération</b> et <b>aire urbaine</b> ?",a:"L'aire urbaine = l'agglomération + la couronne périurbaine.",d:"Agglomération = ville-centre + banlieue. L'aire urbaine est donc plus grande.",
+ s:"L'aire urbaine = l'agglomération + la couronne périurbaine",x:["L'agglomération est plus grande que l'aire urbaine","Ce sont deux mots pour la même chose","L'aire urbaine ne comprend pas la banlieue"]},
+{id:"o6",t:"orga",q:"Quel est le <b>quartier des affaires de Lyon</b> ?",a:"La Part-Dieu.",d:"Des tours de bureaux et une grande gare. (La Défense est à Paris, le Vieux-Port à Marseille.)",s:"La Part-Dieu",x:["La Défense","La Croix-Rousse","Le Vieux-Port"]},
+{id:"o7",t:"orga",q:"Donnez un exemple de commune de banlieue avec des <b>grands ensembles</b>, près de Grenoble.",a:"Saint-Martin-d'Hères.",s:"Saint-Martin-d'Hères",x:["Chamrousse","Le centre historique de Grenoble","Lyon"]},
+{id:"o8",t:"orga",q:"Qu'est-ce qui <b>relie</b> les espaces de l'aire urbaine ?",a:"Les axes de communication et les transports.",d:"Autoroutes, rocades, voies ferrées, transports en commun : ils permettent les <b>migrations pendulaires</b>.",
+ s:"Les axes de communication et les transports",x:["Les fleuves uniquement","Rien : chaque espace vit séparément","Les frontières"]},
+{id:"o9",t:"orga",q:"Pourquoi beaucoup d'habitants de la couronne périurbaine font-ils des <b>migrations pendulaires</b> ?",a:"Ils habitent dans la couronne périurbaine mais travaillent dans l'agglomération.",d:"Ils font l'aller-retour chaque jour, souvent en voiture.",
+ s:"Ils habitent dans la couronne mais travaillent dans l'agglomération",x:["Ils partent en vacances chaque semaine","Ils travaillent tous dans les champs","Ils déménagent tous les ans"]},
+{id:"o10",t:"orga",q:"Donnez un exemple de <b>lieu de pouvoir</b> dans la ville-centre de Paris.",a:"L'Assemblée nationale.",d:"Mais aussi les ministères, l'hôtel de ville…",s:"L'Assemblée nationale",x:["Le quartier de La Part-Dieu","Un lotissement pavillonnaire","Un centre commercial de banlieue"]},
+{id:"o11",t:"orga",q:"Donnez un exemple de <b>lieu culturel</b> dans la ville-centre de Paris.",a:"Le musée du Louvre.",s:"Le musée du Louvre",x:["La Défense","Saint-Martin-d'Hères","Un lotissement de la couronne"]},
+
+/* ================= L'ÉTALEMENT URBAIN ================= */
+{id:"e1",t:"etal",q:"<b>Où</b> s'étendent les constructions avec l'étalement urbain ?",a:"Le long des axes de communication et sur les espaces ruraux.",
+ s:"Le long des axes de communication et sur les espaces ruraux",x:["Uniquement dans le centre historique","Sur la mer, grâce à des îles artificielles","Nulle part : les villes ne grandissent plus"]},
+{id:"e2",t:"etal",q:"Quelles <b>formes</b> prend l'étalement urbain ?",a:"Des lotissements, des zones commerciales et industrielles, le long des axes de communication.",d:"Exemples à Grenoble : le long de la <b>rocade sud</b> et de l'<b>A48</b>.",
+ s:"Lotissements, zones commerciales et industrielles le long des axes",x:["De nouveaux grands immeubles dans le centre historique","La disparition des routes et des autoroutes","Le retour des champs dans la ville-centre"]},
+{id:"e3",t:"etal",q:"Citez les <b>3 causes</b> de l'étalement urbain.",a:"La recherche d'un cadre calme et spacieux, les progrès des transports et la voiture, l'attractivité des métropoles.",d:"1. Maison avec jardin. 2. On peut habiter loin de son travail. 3. Les métropoles offrent emplois et services.",
+ s:"Cadre calme et spacieux, voiture et progrès des transports, attractivité des métropoles",x:["Fermeture des usines, guerres et épidémies","Manque de routes et de voitures","Interdiction de construire en ville"]},
+{id:"e5",t:"etal",q:"Pourquoi des familles quittent-elles la ville-centre pour la <b>couronne périurbaine</b> ?",a:"Pour avoir une maison avec jardin, plus d'espace et de calme.",d:"Le logement y est souvent moins cher.",
+ s:"Pour une maison avec jardin, plus d'espace et de calme",x:["Pour se rapprocher de leur travail dans le centre","Parce que la couronne a plus de métros et de trams","Parce que les grands ensembles y sont nombreux"]},
+{id:"e7",t:"etal",q:"La population des aires urbaines <b>augmente</b>-t-elle ou <b>diminue</b>-t-elle ?",a:"Elle augmente.",d:"Grâce à l'accès aux <b>services</b>, aux <b>emplois</b> et aux <b>transports</b>.",
+ s:"Elle augmente",x:["Elle diminue","Elle ne change plus","Elle augmente seulement dans le centre historique"]},
+{id:"e8",t:"etal",aj:1,q:"Quelles sont les <b>conséquences</b> de l'étalement urbain ?",a:"Des trajets plus longs, des embouteillages, de la pollution et le recul des terres agricoles.",d:"Les habitants du périurbain dépendent beaucoup de la voiture.",
+ s:"Trajets plus longs, embouteillages, pollution, recul des terres agricoles",x:["Moins de voitures et moins de routes","Plus de champs autour des villes","La disparition des migrations pendulaires"]},
+{id:"e10",t:"etal",aj:1,q:"Comment les villes essaient-elles de <b>limiter</b> les effets de l'étalement urbain ?",a:"En développant les transports en commun, le vélo, le covoiturage et les parkings relais.",
+ s:"Tram, bus, vélo, covoiturage, parkings relais",x:["En construisant plus d'autoroutes vers les champs","En supprimant les transports en commun","En fermant les gares"]},
+
+/* ================= LA MÉTROPOLISATION ================= */
+{id:"m1",t:"metro",q:"Quels <b>lieux de pouvoir politique</b> concentrent les aires urbaines ?",a:"Mairie, préfecture, ministères, Assemblée nationale, conseil régional, palais de justice.",
+ s:"Mairie, préfecture, ministères, conseil régional, palais de justice",x:["Champs, fermes et forêts","Pavillons et jardins","Ports de pêche et plages"]},
+{id:"m2",t:"metro",q:"Quelles <b>activités économiques</b> concentrent les aires urbaines ?",a:"Quartiers des affaires, sièges sociaux, zones industrielles et commerciales : de nombreux emplois.",
+ s:"Quartiers des affaires, sièges sociaux, zones industrielles et commerciales",x:["Seulement des exploitations agricoles","Uniquement des petits commerces de village","Aucune : les entreprises quittent les villes"]},
+{id:"m3",t:"metro",q:"Quel est le <b>quartier des affaires de Paris</b> ?",a:"La Défense.",d:"En proche banlieue ouest de Paris, c'est l'un des plus grands quartiers d'affaires d'Europe.",s:"La Défense",x:["La Part-Dieu","Le Vieux-Port","Saint-Martin-d'Hères"]},
+{id:"m6",t:"metro",q:"Quels <b>lieux culturels, éducatifs et de loisirs</b> trouve-t-on dans les aires urbaines ?",a:"Lycées, universités, musées, salles de concert, stades.",
+ s:"Lycées, universités, musées, salles de concert, stades",x:["Uniquement des écoles primaires","Des champs et des forêts","Aucun : ils sont tous à la campagne"]},
+{id:"m7",t:"metro",q:"Quels <b>transports</b> trouve-t-on dans les grandes aires urbaines ?",a:"Métro, tram, vélo, gares, aéroports, plateformes multimodales.",
+ s:"Métro, tram, vélo, gares, aéroports, plateformes multimodales",x:["Uniquement des chemins de terre","Seulement la voiture","Seulement des bateaux sur les fleuves"]},
+{id:"m8",t:"metro",q:"Pourquoi les aires urbaines <b>dominent</b>-elles le territoire français ?",a:"Elles concentrent les pouvoirs politiques, les activités économiques, les lieux culturels et éducatifs et les transports.",d:"On parle alors de <b>métropolisation</b>.",
+ s:"Elles concentrent pouvoirs, emplois, culture, études et transports",x:["Elles ont le plus de terres agricoles","Elles sont toutes au bord de la mer","Elles ont peu d'habitants mais beaucoup de forêts"]}
+];
+
+/* ================= SUJETS POSSIBLES (plans de développement construit) ================= */
+const PLANS = [
+{s:"Montrez l'organisation et les dynamiques des aires urbaines",
+ intro:"En 2020, 93 % des Français vivent dans une aire urbaine, ensemble formé par une ville-centre, sa banlieue et sa couronne périurbaine. Comment les aires urbaines sont-elles organisées et comment évoluent-elles ?",
+ parts:["L'organisation des aires urbaines","Les dynamiques des aires urbaines"],
+ ideas:[
+  {t:"Ville-centre : centre historique, lieux de pouvoir, quartier des affaires (La Part-Dieu à Lyon)",p:0},
+  {t:"Banlieue : grands ensembles (Saint-Martin-d'Hères), centres commerciaux, zones industrielles",p:0},
+  {t:"Couronne périurbaine : lotissements pavillonnaires, au moins 40 % des actifs travaillent dans l'agglomération",p:0},
+  {t:"Des espaces reliés par les axes de communication et les migrations pendulaires domicile-travail",p:0},
+  {t:"Étalement urbain le long des axes de communication et sur l'espace rural (A48, rocade sud à Grenoble)",p:1},
+  {t:"Croissance démographique : la population des aires urbaines augmente",p:1},
+  {t:"Métropolisation : concentration des pouvoirs, des emplois, des lieux culturels et des transports",p:1},
+  {t:"Les pays limitrophes de la France : Belgique, Suisse, Italie…",p:-1,w:"c'est un repère pour la carte, il ne parle pas des aires urbaines."}
+ ],
+ concl:"Les aires urbaines sont organisées en espaces différents, reliés par les mobilités. Elles s'étendent et attirent toujours plus d'habitants et d'activités : c'est la métropolisation."},
+{s:"Présentez les dynamiques de l'étalement urbain : formes, causes, conséquences",
+ intro:"L'étalement urbain (ou périurbanisation) est l'expansion des constructions urbaines le long des axes de communication et sur le milieu rural. Quelles formes prend-il, pourquoi, et avec quelles conséquences ?",
+ parts:["Les formes de l'étalement urbain","Les causes de l'étalement urbain","Les conséquences de l'étalement urbain"],
+ ideas:[
+  {t:"Extension des constructions au-delà de la ville-centre, le long des axes (A48, rocade sud à Grenoble)",p:0},
+  {t:"Lotissements pavillonnaires avec jardins dans la couronne périurbaine",p:0},
+  {t:"Zones commerciales et industrielles en périphérie",p:0},
+  {t:"Recherche d'un cadre de vie calme et spacieux (maison avec jardin)",p:1},
+  {t:"Progrès des transports et généralisation de la voiture",p:1},
+  {t:"Attractivité des métropoles qui offrent emplois et services",p:1},
+  {t:"Migrations pendulaires plus longues et embouteillages",p:2},
+  {t:"Pollution et forte dépendance à la voiture",p:2},
+  {t:"Recul des terres agricoles et des espaces naturels",p:2},
+  {t:"Les ministères et l'Assemblée nationale se trouvent à Paris",p:-1,w:"c'est un exemple de métropolisation (lieux de pouvoir), pas d'étalement urbain."}
+ ],
+ concl:"L'étalement urbain fait grandir les aires urbaines vers l'espace rural. Il s'explique par le désir d'une maison, la voiture et l'attractivité des métropoles, mais il pose des problèmes de transports, de pollution et de recul des espaces agricoles."},
+{s:"Décrivez les espaces des aires urbaines françaises et expliquez leurs évolutions",
+ intro:"93 % des Français vivent dans une aire urbaine. Quels espaces la composent et comment évoluent-ils ?",
+ parts:["Description des espaces de l'aire urbaine","Les évolutions des aires urbaines"],
+ ideas:[
+  {t:"Ville-centre : centre historique, immeubles anciens, lieux de pouvoir, quartier des affaires",p:0},
+  {t:"Banlieue : grands ensembles, pavillons, centres commerciaux, usines",p:0},
+  {t:"Couronne périurbaine : pavillons et jardins, au moins 40 % des actifs travaillent dans l'agglomération",p:0},
+  {t:"Espace rural : espaces agricoles et naturels au-delà de l'aire urbaine",p:0},
+  {t:"Étalement urbain le long des axes de communication (A48 à Grenoble), dû à la recherche d'une maison et à la voiture",p:1},
+  {t:"Migrations pendulaires de plus en plus nombreuses entre couronne et agglomération",p:1},
+  {t:"Croissance démographique : 93 % des Français vivent en aire urbaine et la population augmente",p:1},
+  {t:"Métropolisation : concentration des pouvoirs, des emplois et des lieux culturels",p:1},
+  {t:"Le Rhin est un fleuve frontière avec l'Allemagne",p:-1,w:"c'est un repère de localisation, il ne décrit pas les espaces d'une aire urbaine."}
+ ],
+ concl:"Une aire urbaine juxtapose ville-centre, banlieue et couronne périurbaine. Elle ne cesse de s'étendre et d'attirer habitants et activités : la France est un territoire très urbanisé et métropolisé."}
+];
+const ROMAN = ["I","II","III"];
+function planHtml(p){
+  return `<div class="plan"><div class="pl-i"><b>Introduction</b>${p.intro}</div>` +
+    p.parts.map((t, i) => `<div class="pl-p"><b>${ROMAN[i]}. ${t}</b><ul>${p.ideas.filter(x => x.p === i).map(x => `<li>${x.t}</li>`).join("")}</ul></div>`).join("") +
+    `<div class="pl-i"><b>Conclusion</b>${p.concl}</div></div>`;
+}
+PLANS.forEach((p, i) => CARDS.push({id:"p" + (i + 1), t:"methode", q:`Sujet : « ${p.s} ». Quel plan ?`,
+  a:p.parts.map((t, j) => `${ROMAN[j]}. ${t}`).join("<br>"), d:planHtml(p)}));
+
+/* ================= VRAI OU FAUX ================= */
+const VF = [
+ {s:"L'agglomération comprend la couronne périurbaine.",v:false,e:"Agglomération = ville-centre + banlieue. C'est l'<b>aire urbaine</b> qui comprend la couronne périurbaine."},
+ {s:"En 2020, 93 % des Français vivent dans une aire urbaine.",v:true,e:"C'est le chiffre clé du chapitre : la France est un territoire très urbanisé."},
+ {s:"Les grandes aires urbaines se trouvent surtout en montagne.",v:false,e:"Elles se concentrent sur les <b>littoraux</b>, dans les <b>vallées des fleuves</b> et près des <b>frontières</b>."},
+ {s:"Les migrations pendulaires sont des déplacements quotidiens entre le domicile et le travail.",v:true,e:"Elles se font chaque jour, souvent entre la couronne périurbaine et l'agglomération."},
+ {s:"L'étalement urbain se fait le long des axes de communication.",v:true,e:"Les constructions s'étendent le long des routes et autoroutes (A48, rocade sud à Grenoble) et sur le milieu rural."},
+ {s:"La métropolisation, c'est le départ des habitants vers les campagnes.",v:false,e:"C'est l'inverse : la <b>concentration des hommes et des activités dans les métropoles</b>."},
+ {s:"La couronne périurbaine est surtout composée de grands ensembles.",v:false,e:"La couronne est faite de <b>pavillons avec jardins</b>. Les grands ensembles se trouvent en <b>banlieue</b>."},
+ {s:"La Défense est le quartier des affaires de Lyon.",v:false,e:"La Défense est à <b>Paris</b>. Le quartier des affaires de Lyon est <b>La Part-Dieu</b>."},
+ {s:"Lille et Strasbourg sont des aires urbaines frontalières.",v:true,e:"Lille est proche de la Belgique, Strasbourg de l'Allemagne."},
+ {s:"Lyon est traversée par la Seine.",v:false,e:"Lyon est traversée par le <b>Rhône</b> (et la Saône). La Seine traverse Paris."},
+ {s:"La population des aires urbaines diminue.",v:false,e:"Elle <b>augmente</b> : les aires urbaines attirent grâce aux emplois, aux services et aux transports."},
+ {s:"Une métropole exerce une influence sur les territoires alentours.",v:true,e:"C'est ce qui la définit : grande ville qui concentre population et activités et qui influence les territoires autour."},
+ {s:"En général, le quartier des affaires se trouve dans la couronne périurbaine.",v:false,e:"Il se trouve dans la <b>ville-centre</b> (La Part-Dieu à Lyon) ou tout près d'elle (La Défense à Paris)."},
+ {s:"Dans la couronne périurbaine, au moins 40 % de la population a un emploi dans l'agglomération.",v:true,e:"C'est le seuil qui définit la couronne périurbaine."},
+ {s:"L'espace rural fait partie de l'aire urbaine.",v:false,e:"L'espace rural se trouve <b>au-delà</b> de l'aire urbaine."},
+ {s:"Les universités et les musées rendent les aires urbaines attractives.",v:true,e:"Les lieux culturels, éducatifs et de loisirs font partie de la métropolisation."},
+ {s:"L'étalement urbain fait reculer les terres agricoles.",v:true,e:"On construit des maisons, des routes et des zones commerciales sur des champs et des forêts."},
+ {s:"La Belgique est un pays limitrophe de la France.",v:true,e:"Pays limitrophes : Belgique, Luxembourg, Allemagne, Suisse, Italie, Espagne."},
+ {s:"Habiter dans la couronne périurbaine oblige souvent à utiliser la voiture.",v:true,e:"Les transports en commun y sont rares et les trajets vers l'agglomération sont longs."}
+];
+
+/* ================= SCHÉMA À COMPLÉTER ================= */
+const LABELS = [
+ {l:"vc",n:"Ville-centre"},{l:"b",n:"Banlieue"},{l:"cp",n:"Couronne périurbaine"},{l:"r",n:"Espace rural"},
+ {l:"axe",n:"Axes de communication principaux"},{l:"mp",n:"Migrations pendulaires"},{l:"eu",n:"Étalement urbain (périurbanisation)"},
+ {l:"agglo",n:"Agglomération (pôle urbain)"},{l:"au",n:"Aire urbaine"}
+];
+const ARROW = (c, two) => `<svg viewBox="0 0 46 18"><path d="M${two ? 5 : 5} 9h${two ? 36 : 34}" stroke="${c}" stroke-width="2.4"/>${two ? `<path d="M9 4 3 9l6 5" fill="none" stroke="${c}" stroke-width="2.4" stroke-linejoin="round"/>` : ""}<path d="M${two ? 37 : 35} 4l6 5-6 5" fill="none" stroke="${c}" stroke-width="2.4" stroke-linejoin="round"/></svg>`;
+const SLOTS = [
+ {s:"s1",g:1,fig:'<span class="sw" style="background:#E2584C"></span>',ans:"vc",e:"<b>Ville-centre</b> (rouge, au cœur) : centre historique, quartier des affaires, immeubles anciens, commerces."},
+ {s:"s2",g:1,fig:'<span class="sw" style="background:#F4C49B"></span>',ans:"b",e:"<b>Banlieue</b> (orange) : grands ensembles, pavillons, centres commerciaux, usines."},
+ {s:"s3",g:1,fig:'<span class="sw" style="background:#F5DF72"></span>',ans:"cp",e:"<b>Couronne périurbaine</b> (jaune) : pavillons et jardins."},
+ {s:"s4",g:1,fig:'<span class="sw" style="background:#BFE0A8"></span>',ans:"r",e:"<b>Espace rural</b> (vert) : espaces agricoles et naturels au-delà de l'aire urbaine."},
+ {s:"s5",g:2,fig:ARROW("#18202C",true),ans:"axe",e:"<b>Axes de communication</b> (flèche noire) : autoroutes, voies ferrées, rocades."},
+ {s:"s6",g:2,fig:ARROW("#C0392B",true),ans:"mp",e:"<b>Migrations pendulaires</b> (double flèche rouge) : aller-retour quotidien domicile-travail."},
+ {s:"s7",g:2,fig:ARROW("#2E7D32",false),ans:"eu",e:"<b>Étalement urbain</b> (flèche verte vers l'extérieur) : la ville gagne sur l'espace rural."},
+ {s:"s8",g:3,eq:"Ville-centre + banlieue =",ans:"agglo",e:"Ville-centre + banlieue = <b>agglomération (pôle urbain)</b>."},
+ {s:"s9",g:3,eq:"Agglomération + couronne périurbaine =",ans:"au",e:"Agglomération + couronne périurbaine = <b>aire urbaine</b>."}
+];
+const SCHEMA_SVG = (() => {
+  const C = 200, P = (r, a) => [C + r * Math.cos(a * Math.PI / 180), C + r * Math.sin(a * Math.PI / 180)].map(v => v.toFixed(1));
+  const line = (a, r1, r2, col, two) => { const [x1, y1] = P(r1, a), [x2, y2] = P(r2, a); return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="3" stroke-linecap="round" marker-end="url(#m-${col.slice(1)})" ${two ? `marker-start="url(#m-${col.slice(1)})"` : ""}/>`; };
+  const mk = c => `<marker id="m-${c.slice(1)}" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="${c}"/></marker>`;
+  return `<svg viewBox="0 0 400 400" role="img" aria-label="Schéma d'une aire urbaine : cercles concentriques et flèches">
+  <defs>${mk("#18202C")}${mk("#C0392B")}${mk("#2E7D32")}
+   <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="9"/></filter></defs>
+  <g filter="url(#rough)"><circle cx="200" cy="200" r="186" fill="#BFE0A8"/><circle cx="200" cy="200" r="138" fill="#F5DF72"/><circle cx="200" cy="200" r="94" fill="#F4C49B"/></g>
+  <circle cx="200" cy="200" r="40" fill="#E2584C" stroke="#6E1C14" stroke-width="2.5"/>
+  ${line(-40,44,190,"#18202C",true)}${line(200,44,190,"#18202C",true)}${line(95,44,190,"#18202C",true)}
+  ${line(-18,46,126,"#C0392B",true)}${line(160,46,126,"#C0392B",true)}${line(65,46,126,"#C0392B",true)}
+  ${line(-100,146,184,"#2E7D32")}${line(20,146,184,"#2E7D32")}${line(135,146,184,"#2E7D32")}${line(228,146,184,"#2E7D32")}
+  </svg>`;
+})();
+
+const BADGES = [
+  {id:"first",    name:"Premières fiches",        desc:"Réviser 10 cartes.",                              icon:"card"},
+  {id:"streak5",  name:"En série",                desc:"5 bonnes réponses d'affilée.",                    icon:"bolt"},
+  {id:"comeback", name:"Persévérant",             desc:"Réussir 10 cartes que vous aviez ratées.",          icon:"loop"},
+  {id:"m_def",    name:"Dictionnaire vivant",     desc:"Maîtriser 80 % des définitions.",                 icon:"book"},
+  {id:"m_reperes",name:"Cartographe",             desc:"Maîtriser 80 % des repères et lieux.",            icon:"map"},
+  {id:"m_orga",   name:"Urbaniste",               desc:"Maîtriser 80 % de l'organisation de l'aire urbaine.",icon:"rings"},
+  {id:"m_etal",   name:"Explorateur du périurbain",desc:"Maîtriser 80 % des cartes sur l'étalement urbain.",icon:"house"},
+  {id:"m_metro",  name:"Métropolitain",           desc:"Maîtriser 80 % des cartes sur la métropolisation.",icon:"city"},
+  {id:"qcm10",    name:"Sans faute",              desc:"Faire 10/10 au défi QCM.",                        icon:"target"},
+  {id:"schema",   name:"Architecte",              desc:"Compléter le schéma sans erreur.",                icon:"pen"},
+  {id:"days3",    name:"Régulier",                desc:"Réviser 3 jours différents.",                     icon:"cal"},
+  {id:"ready",    name:"Prêt pour l'évaluation",  desc:"Atteindre 70 % de maîtrise globale.",             icon:"check"}
+];
+
+/* Niveaux calculés sur la maîtrise globale (le % « prêt pour l'évaluation ») */
+const LEVELS = [
+  [0,"Je découvre le chapitre"],[.15,"Apprenti géographe"],[.45,"Presque prêt"],
+  [.70,"Prêt pour l'évaluation"],[.90,"Expert du chapitre"],[.999,"Légende du G1"]
+];
+
+/* ===== ÉVALUATION BLANCHE : uniquement l'essentiel du cours et de la fiche (pas les ajouts) ===== */
+const ESSENTIELS = {
+  def:     ["d1","d2","d3","d4","d5","d6","d7"],
+  reperes: ["r2","r8","r9","r10","r13","r14","r15","r18","r19"],
+  orga:    ["o1","o2","o3","o4","o6","o7","o8","o9"],
+  etal:    ["e1","e2","e3","e5","e7"],
+  metro:   ["m1","m2","m3","m6","m7","m8"]
+};
+// Composition d'une évaluation blanche (15 questions)
+const EXAM_PLAN = {def:5, reperes:4, orga:2, etal:2, metro:2};
+
+(function(){
+"use strict";
+const KEY = "g1-aires-urbaines-3e-v1";
+
+const $ = s => document.querySelector(s);
+const app = $("#app");
+const byId = Object.fromEntries(CARDS.map(c => [c.id, c]));
+
+/* ---------- Sauvegarde ---------- */
+function fresh(){ return {name:"", xp:0, cards:{}, badges:{}, days:[], reviewed:0, bestStreak:0, comeback:0, schemaPerfect:0, triPerfect:0, sel:Object.keys(THEMES), size:20}; }
+let S = fresh();
+try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(fresh(), JSON.parse(raw)); } catch(e) {}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} }
+
+/* ---------- Outils ---------- */
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const box = id => (S.cards[id] || {}).b || 0;
+const cardScore = id => { const b = box(id); return b <= 1 ? 0 : b === 2 ? .4 : b === 3 ? .7 : 1; };
+const mastery = list => list.length ? list.reduce((s, c) => s + cardScore(c.id), 0) / list.length : 0;
+const inTheme = t => CARDS.filter(c => c.t === t);
+const pct = x => Math.round(x * 100);
+const today = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+const esc = s => String(s).replace(/[&<>"]/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const strip = s => String(s).replace(/<[^>]+>/g, "");
+
+function level(){
+  const xp = mastery(CARDS);
+  let i = 0; for (let k = 0; k < LEVELS.length; k++) if (xp >= LEVELS[k][0]) i = k;
+  // un niveau atteint reste acquis, même si la maîtrise baisse
+  if (i > (S.lvl || 0)) { S.lvl = i; save(); }
+  i = Math.max(i, S.lvl || 0);
+  const cur = LEVELS[i][0], next = LEVELS[i + 1] ? LEVELS[i + 1][0] : null;
+  return {n:i + 1, name:LEVELS[i][1], cur, next, p: next ? Math.max(0, Math.min(1, (xp - cur) / (next - cur))) : 1};
+}
+function dayStreak(){
+  const set = new Set(S.days); let n = 0; const d = new Date();
+  if (!set.has(today())) d.setDate(d.getDate() - 1);
+  while (true) {
+    const k = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    if (set.has(k)) { n++; d.setDate(d.getDate() - 1); } else break;
+  }
+  return n;
+}
+function markDay(){ const t = today(); if (!S.days.includes(t)) S.days.push(t); }
+const tomorrow = () => { const d = new Date(); d.setDate(d.getDate() + 1); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+// Cartes à revoir aujourd'hui : ratées (ou « presque ») lors d'un jour précédent et pas encore réussies depuis
+const dueIds = () => CARDS.filter(c => { const r = S.cards[c.id]; if (!r) return false; return r.due ? r.due <= today() : r.b === 1; }).map(c => c.id);
+const failedIds = dueIds;
+
+/* ---------- Icônes ---------- */
+const P = {
+  card:'<rect x="4" y="6" width="16" height="12" rx="2"/><path d="M8 10h8M8 14h5"/>',
+  stack:'<rect x="6" y="8" width="14" height="11" rx="2"/><path d="M4 15V6a2 2 0 0 1 2-2h10"/>',
+  bolt:'<path d="M13 3 5 14h6l-1 7 8-11h-6z"/>',
+  bolt2:'<path d="M11 2 4 12h5l-1 6 6-9H9z"/><path d="M17 9l-3 5h3l-1 4 4-6h-3z"/>',
+  loop:'<path d="M4 12a8 8 0 0 1 14-5l2 2M20 12a8 8 0 0 1-14 5l-2-2"/><path d="M20 4v5h-5M4 20v-5h5"/>',
+  book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/>',
+  clock:'<circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/>',
+  star:'<path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
+  shield:'<path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6z"/><path d="m9 12 2 2 4-4"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/>',
+  scale:'<path d="M12 4v16M6 20h12M5 8h14"/><path d="m5 8-3 6h6zM19 8l-3 6h6z"/>',
+  pen:'<path d="m4 20 4-1 11-11-3-3L5 16z"/><path d="m14 7 3 3"/>',
+  target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/>',
+  line:'<path d="M3 12h18"/><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/>',
+  line2:'<path d="M3 8h18M3 16h18"/><circle cx="7" cy="8" r="2"/><circle cx="16" cy="8" r="2"/><circle cx="11" cy="16" r="2"/>',
+  cal:'<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+  check:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
+  crown:'<path d="m3 8 4 4 5-7 5 7 4-4-2 11H5z"/>',
+  flip:'<path d="M4 7h11a5 5 0 0 1 0 10H9"/><path d="m8 3-4 4 4 4"/>',
+  quiz:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/>',
+  arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+  back:'<path d="M19 12H5M11 6l-6 6 6 6"/>',
+  medal:'<circle cx="12" cy="14" r="6"/><path d="M8 3h8l-2 5h-4z"/>',
+  pin:'<path d="M12 21s-6-5.6-6-11a6 6 0 0 1 12 0c0 5.4-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/>',
+  user:'<circle cx="12" cy="8" r="3.5"/><path d="M5 20c1-3.6 3.8-5.5 7-5.5s6 1.9 7 5.5"/>',
+  map:'<path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>',
+  rings:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/>',
+  house:'<path d="M4 11 12 4l8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-5h4v5"/>',
+  city:'<path d="M3 21h18"/><rect x="5" y="9" width="6" height="12"/><rect x="13" y="4" width="6" height="17"/><path d="M8 12v.01M8 16v.01M16 8v.01M16 12v.01M16 16v.01"/>',
+  fire:'<path d="M12 21c-4 0-7-3-7-7 0-3 2-5 3-7 1 2 2 3 3 3 0-3 1-5 3-7 1 3 5 6 5 11 0 4-3 7-7 7z"/>'
+};
+const ico = (n, sz) => `<svg viewBox="0 0 24 24" width="${sz||20}" height="${sz||20}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n]||""}</svg>`;
+const medal = (b, locked) => `<div class="medal${locked ? " locked" : ""}"><div class="disc">${ico(b.icon, 30)}</div></div>`;
+
+/* ---------- Badges ---------- */
+function checkBadges(ctx){
+  ctx = ctx || {};
+  const got = [];
+  const give = id => { const bd = BADGES.find(b => b.id === id); if (bd && !S.badges[id]) { S.badges[id] = today(); got.push(bd); } };
+  if (S.reviewed >= 10) give("first");
+  if (S.reviewed >= 100) give("hundred");
+  if (S.bestStreak >= 5) give("streak5");
+  if (S.bestStreak >= 15) give("streak15");
+  if (S.comeback >= 10) give("comeback");
+  for (const t of Object.keys(THEMES)) if (mastery(inTheme(t)) >= .8) give("m_" + t);
+  if (ctx.qcmPerfect) give("qcm10");
+  if (S.schemaPerfect >= 1) give("schema");
+
+  if (S.days.length >= 3) give("days3");
+  const g = mastery(CARDS);
+  if (g >= .7) give("ready");
+  if (g >= .999) give("master");
+  if (got.length) { save(); got.forEach((b, i) => setTimeout(() => toast(b), i * 2600)); }
+}
+let toastEl;
+function toast(b){
+  if (!toastEl) { toastEl = document.createElement("div"); toastEl.className = "toast"; toastEl.setAttribute("role", "status"); document.body.appendChild(toastEl); }
+  toastEl.innerHTML = medal(b) + `<div><small>Badge débloqué</small><b>${esc(b.name)}</b></div>`;
+  requestAnimationFrame(() => toastEl.classList.add("show"));
+  confetti();
+  clearTimeout(toastEl._t); toastEl._t = setTimeout(() => toastEl.classList.remove("show"), 2300);
+}
+function confetti(){
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let c = $("#confetti"); if (!c) { c = document.createElement("canvas"); c.id = "confetti"; document.body.appendChild(c); }
+  const ctx = c.getContext("2d"), W = c.width = innerWidth, H = c.height = innerHeight;
+  const cs = getComputedStyle(document.documentElement);
+  const cols = ["--gold","--accent","--c-orga","--c-metro","--c-def","--c-etal"].map(v => cs.getPropertyValue(v).trim() || "#c90");
+  const ps = Array.from({length:90}, () => ({x:W/2 + (Math.random()-.5)*80, y:H*.75, vx:(Math.random()-.5)*12, vy:-Math.random()*14-6, r:Math.random()*6+3, c:cols[Math.floor(Math.random()*cols.length)], a:Math.random()*6, s:(Math.random()-.5)*.3}));
+  let f = 0;
+  (function tick(){
+    ctx.clearRect(0,0,W,H);
+    ps.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += .42; p.vx *= .99; p.a += p.s; ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.a); ctx.fillStyle = p.c; ctx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2); ctx.restore(); });
+    if (++f < 110) requestAnimationFrame(tick); else ctx.clearRect(0,0,W,H);
+  })();
+}
+function xpFloat(n){
+  if (n <= 0) return;
+  const el = document.createElement("div"); el.className = "xpfloat"; el.textContent = "+" + n + " XP";
+  document.body.appendChild(el); setTimeout(() => el.remove(), 950);
+}
+function addXP(n){ S.xp += n; xpFloat(n); }
+
+/* Statistiques anonymes (GoatCounter) : uniquement le nombre de sessions terminées, sans donnée personnelle */
+function track(name){ try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: "g1-" + name, title: name, event: true}); } catch(e) {} }
+
+/* Statistiques anonymes (Google Sheets) : appli et mode de jeu uniquement */
+const APP_NAME = "Réviser 3e G1";
+const STATS_URL = window.G1_STATS_URL || "";
+function deviceType(){
+  try {
+    const touch = matchMedia("(pointer: coarse)").matches;
+    if (!touch) return "ordinateur";
+    return Math.min(screen.width, screen.height) < 600 ? "téléphone" : "tablette";
+  } catch(e) { return ""; }
+}
+function reportVisit(){
+  try {
+    if (!STATS_URL || navigator.webdriver) return; // pas de comptage pour les navigateurs pilotés par des robots
+    const send = () => {
+      ["pointerdown", "keydown", "touchstart"].forEach(ev => removeEventListener(ev, send, true));
+      try { if (sessionStorage.getItem("g1-visite")) return; sessionStorage.setItem("g1-visite", "1"); } catch(e) {}
+      fetch(STATS_URL, {method: "POST", mode: "no-cors", keepalive: true, headers: {"Content-Type": "text/plain;charset=utf-8"},
+        body: JSON.stringify({type: "visite", app: APP_NAME, appareil: deviceType()})}).catch(() => {});
+    };
+    // La visite n'est comptée qu'au premier vrai geste (clic, toucher ou touche du clavier)
+    ["pointerdown", "keydown", "touchstart"].forEach(ev => addEventListener(ev, send, {capture: true, passive: true}));
+  } catch(e) {}
+}
+function report(mode, score, total, results){
+  try {
+    if (!STATS_URL || navigator.webdriver || !Object.keys(results).length) return;
+    const body = JSON.stringify({app: APP_NAME, mode});
+    fetch(STATS_URL, {method: "POST", mode: "no-cors", keepalive: true, headers: {"Content-Type": "text/plain;charset=utf-8"}, body}).catch(() => {});
+  } catch(e) {}
+}
+
+/* ---------- Mise à jour d'une carte ---------- */
+function grade(id, r){ // r : 0 raté, 1 presque, 2 su
+  const rec = S.cards[id] || (S.cards[id] = {b:0, ok:0, ko:0});
+  const before = rec.b;
+  if (r === 2) {
+    if (rec.f) { S.comeback++; rec.f = false; }
+    // carte ratée : elle revient à J+1, puis J+3, puis J+7 tant qu'elle est réussie
+    if (rec.st && rec.st < 3) { const d = new Date(); d.setDate(d.getDate() + (rec.st === 1 ? 3 : 7)); rec.due = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); rec.st++; }
+    else { delete rec.due; rec.st = 0; }
+    rec.b = Math.min(5, Math.max(before, 1) + 1); rec.ok++;
+  } else if (r === 1) {
+    rec.b = before >= 3 ? before - 1 : Math.max(1, before === 0 ? 1 : before);
+    if (before === 0) rec.b = 1;
+    rec.due = tomorrow();
+  } else {
+    rec.b = 1; rec.ko++; rec.f = true; rec.due = tomorrow(); rec.st = 1;
+  }
+  rec.last = Date.now();
+  S.reviewed++; markDay();
+}
+
+/* ---------- Sélection des cartes ---------- */
+function pool(){ return CARDS.filter(c => S.sel.includes(c.t)); }
+function pick(list, n){
+  const now = Date.now();
+  return list.map(c => {
+    const r = S.cards[c.id]; const b = r ? r.b : 0;
+    let pr = b === 0 ? 1.3 : b === 1 ? 0 : b; // les cartes ratées passent en premier, puis les nouvelles
+    if (r && r.last && now - r.last < 8 * 60 * 1000) pr += 1.5;
+    return {c, pr: pr + Math.random() * 1.2};
+  }).sort((a, b) => a.pr - b.pr).slice(0, n).map(x => x.c);
+}
+
+/* =========================================================
+   ACCUEIL
+   ========================================================= */
+let confirmReset = false;
+function home(){
+  view = "home"; stopTimer(); clearInterval(examTick);
+  const lv = level(), g = mastery(CARDS);
+  const acquired = CARDS.filter(c => box(c.id) >= 3).length;
+  const fails = failedIds().length;
+  const nb = Object.keys(S.badges).length;
+  const sizes = [10, 20, 40, "Tout"];
+  const p = pool();
+  app.innerHTML = `
+  <header class="top">
+    <div class="brand"><div class="tab-h2" aria-hidden="true">G1</div>
+      <div class="brand-txt"><b>Les aires urbaines en France</b><span>3e · Géographie · Révisions</span>
+        <div class="chips"><span class="chip">${ico("pin",13)} Collège Plan Menu · Coublevie · 3e</span><span class="chip">${ico("user",13)} Jeanne Cador · Enseignante</span></div></div></div>
+    <div class="navbtns"><button class="ghost" id="toBadges">${ico("medal",16)} Badges et bilan</button></div>
+  </header>
+
+  ${fails ? `<div class="review-banner today"><p><b>${fails} carte${fails > 1 ? "s" : ""} à revoir aujourd'hui.</b> Ce sont celles que vous aviez ratées : revoyez-les pour les fixer.</p><button class="go" id="goFails">${ico("loop",18)} Les revoir</button></div>` : ""}
+
+  <section class="dash fade-in" aria-label="Votre progression">
+    <div class="player">
+      <div class="lvl" title="Niveau ${lv.n} sur ${LEVELS.length}">${lv.n}<small>NIV.</small></div>
+      <div class="pinfo">
+        <div class="pname"><h2>${esc(lv.name)}</h2></div>
+        <div class="xpbar"><i style="width:${pct(lv.p)}%"></i></div>
+        <div class="xptxt"><span>${S.xp} XP</span><span>${lv.next ? "niveau suivant : " + pct(lv.next) + " %" : "niveau maximum"}</span></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat ready"><b>${pct(g)} %</b><span>prêt pour l'évaluation</span></div>
+      <div class="stat"><b>${acquired}<small class="muted" style="font-size:16px">/${CARDS.length}</small></b><span>cartes acquises</span></div>
+      <div class="stat fire"><b>${dayStreak()}</b><span>jour${dayStreak() > 1 ? "s" : ""} de révision d'affilée</span></div>
+      <div class="stat"><b>${nb}<small class="muted" style="font-size:16px">/${BADGES.length}</small></b><span>badges gagnés</span></div>
+    </div>
+  </section>
+
+
+  <section class="how" aria-label="Comment ça marche">
+    <h3>Comment ça marche ?</h3>
+    <ol>
+      <li><span><b>Choisissez</b> vos thèmes et un mode de jeu.</span></li>
+      <li><span><b>Lisez la question</b>, cherchez la réponse dans votre tête, puis retournez la carte.</span></li>
+      <li><span><b>Soyez honnête</b> : « Je savais », « Presque » ou « Raté ».</span></li>
+      <li><span><b>Les cartes ratées reviennent</b> le lendemain, jusqu'à ce que vous les sachiez.</span></li>
+    </ol>
+    <p>Chaque bonne réponse rapporte des points (XP). Enchaînez les bonnes réponses pour gagner plus et débloquer des badges.</p>
+  </section>
+
+  <div class="sec-title"><h3>Choisissez vos thèmes</h3><button class="linkbtn" id="allThemes">${S.sel.length === Object.keys(THEMES).length ? "Tout désélectionner" : "Tout sélectionner"}</button></div>
+  <div class="themes">
+    ${Object.entries(THEMES).map(([k, t]) => { const l = inTheme(k), m = mastery(l); return `
+      <button class="theme" style="--c:${t.color}" aria-pressed="${S.sel.includes(k)}" data-t="${k}">
+        <div class="th-top"><span class="th-name"><span class="dot"></span>${esc(t.label)}</span><span class="chk"></span></div>
+        <div class="mbar"><i style="width:${pct(m)}%"></i></div>
+        <div class="th-meta"><span>${l.length} cartes</span><span>${pct(m)} % maîtrisé</span></div>
+      </button>`; }).join("")}
+  </div>
+
+  <div class="sec-title"><h3>Choisissez votre mode</h3><span class="muted" style="font-size:14px">${p.length} cartes sélectionnées</span></div>
+  <div class="modes">
+    <div class="mode">
+      <h4>${ico("flip",22)} Flip cards</h4>
+      <p>Lisez la question, cherchez la réponse dans votre tête, retournez la carte et notez-vous honnêtement. Les cartes ratées reviennent le lendemain, puis 3 et 7 jours après.</p>
+      <div class="seg" role="group" aria-label="Nombre de cartes">${sizes.map(s => `<button data-size="${s}" aria-pressed="${String(S.size) === String(s)}">${s}</button>`).join("")}</div>
+      <button class="go" id="goFlip" ${p.length ? "" : "disabled"}>Commencer ${ico("arrow",18)}</button>
+    </div>
+    <div class="mode">
+      <h4>${ico("quiz",22)} Défi QCM</h4>
+      <p>10 questions à choix multiples, corrigées tout de suite. Répondez vite pour gagner un bonus. Objectif : 10/10.</p>
+      <button class="go alt" id="goQcm" ${qcmPool().length >= 4 ? "" : "disabled"}>Lancer le défi ${ico("arrow",18)}</button>
+      ${qcmPool().length >= 4 ? "" : `<p style="font-size:12.5px">Sélectionnez au moins un thème autre que « Sujets possibles ».</p>`}
+    </div>
+    <div class="mode">
+      <h4>${ico("scale",22)} Vrai ou faux</h4>
+      <p>10 affirmations pièges sur tout le chapitre. Chaque réponse est corrigée et expliquée.</p>
+      <button class="go alt" id="goVf">Démasquer les erreurs ${ico("arrow",18)}</button>
+    </div>
+    <div class="mode">
+      <h4>${ico("rings",22)} Schéma à compléter</h4>
+      <p>Le schéma d'une aire urbaine du cours : glissez les étiquettes dans la légende.</p>
+      <button class="go alt" id="goSchema">Compléter le schéma ${ico("arrow",18)}</button>
+    </div>
+    <div class="mode">
+      <h4>${ico("pen",22)} Construire un plan</h4>
+      <p>Les 3 sujets possibles de l'évaluation : rangez les idées dans la bonne partie et repérez l'idée hors sujet.</p>
+      <button class="go alt" id="goPlan">Construire ${ico("arrow",18)}</button>
+    </div>
+    <div class="mode exam">
+      <h4>${ico("clock",22)} Évaluation blanche</h4>
+      <span class="veille">À faire la veille de l'évaluation</span>
+      <p>${EXAM_N} questions essentielles pour le contrôle : définitions, repères et connaissances de la fiche de révision. Avec chrono, sans correction pendant l'épreuve. À la fin : votre note sur 20 et votre bilan par notion.</p>
+      <button class="go" id="goExam">Commencer l'évaluation ${ico("arrow",18)}</button>
+    </div>
+  </div>
+
+  <div class="sec-title"><h3>Vos badges</h3><button class="linkbtn" id="toBadges2">Voir tous les badges</button></div>
+  <div class="badge-strip">
+    ${BADGES.slice().sort((a, b) => (S.badges[b.id] ? 1 : 0) - (S.badges[a.id] ? 1 : 0)).slice(0, 8).map(b => `<div class="medal${S.badges[b.id] ? "" : " locked"}" title="${esc(b.desc)}"><div class="disc">${ico(b.icon,30)}</div><span>${esc(b.name)}</span></div>`).join("")}
+  </div>
+  <p class="foot">Votre progression est enregistrée dans ce navigateur, sur cet appareil.</p>`;
+
+  app.querySelectorAll(".theme").forEach(b => b.onclick = () => {
+    const t = b.dataset.t; S.sel = S.sel.includes(t) ? S.sel.filter(x => x !== t) : S.sel.concat(t); save(); home();
+  });
+  $("#allThemes").onclick = () => { S.sel = S.sel.length === Object.keys(THEMES).length ? [] : Object.keys(THEMES); save(); home(); };
+  app.querySelectorAll("[data-size]").forEach(b => b.onclick = () => { S.size = b.dataset.size === "Tout" ? "Tout" : +b.dataset.size; save(); home(); });
+  $("#goFlip").onclick = () => { const n = S.size === "Tout" ? p.length : S.size; startFlip(pick(p, n).map(c => c.id)); };
+  $("#goQcm").onclick = startQcm;
+  $("#goVf").onclick = startVf;
+  $("#goSchema").onclick = startSchema;
+  $("#goPlan").onclick = planPick;
+  $("#goExam").onclick = startExam;
+  $("#toBadges").onclick = $("#toBadges2").onclick = badgesView;
+  const gf = $("#goFails"); if (gf) gf.onclick = () => startFlip(shuffle(failedIds()));
+  window.scrollTo(0, 0);
+}
+
+/* =========================================================
+   FLIP CARDS
+   ========================================================= */
+let view = "home", F = null;
+function startFlip(ids){
+  if (!ids.length) return;
+  F = {queue: ids.slice(), total: ids.length, done: 0, i: 0, flipped: false, combo: 0, xp0: S.xp, res: {}, requeue: {}, t0: Date.now()};
+  view = "flip"; renderFlip();
+}
+function boxDots(id, color){
+  const b = box(id); let h = "";
+  for (let i = 1; i <= 5; i++) h += `<i class="${i <= b ? "on" : ""}"></i>`;
+  return `<span class="fbox" title="Niveau de la carte : ${b}/5">${h}</span>`;
+}
+function renderFlip(){
+  if (F.i >= F.queue.length) return endFlip();
+  const c = byId[F.queue[F.i]], th = THEMES[c.t];
+  F.flipped = false;
+  app.innerHTML = `
+  <div class="sess-head">
+    <button class="ghost" id="quit" aria-label="Retour à l'accueil">${ico("back",16)}</button>
+    <div class="prog" aria-hidden="true"><i style="width:${pct(F.done / F.total)}%"></i></div>
+    <span class="sess-count">${F.done}/${F.total}</span>
+    <span class="combo" id="combo">${F.combo >= 2 ? "×" + F.combo : ""}</span>
+  </div>
+  <div class="stage fade-in">
+    <div class="flip" id="flip" tabindex="0" role="button" aria-label="Retourner la carte">
+      <div class="face front" style="--c:${th.color}">
+        <div class="fhead"><span class="ftag">${esc(th.short)}</span>${boxDots(c.id)}</div>
+        <div class="ruled"><div class="q">${c.q}</div><div class="hint">Touchez la carte pour voir le corrigé</div></div>
+      </div>
+      <div class="face back" style="--c:${th.color}">
+        <div class="fhead"><span class="ftag">Corrigé · ${esc(th.short)}</span>${boxDots(c.id)}</div>
+        <div class="ruled">
+          <p class="qback">${strip(c.q)}</p>
+          <div class="ans-label">Réponse</div>
+          <div class="ans">${c.a}</div>
+          ${c.d ? `<div class="det">${c.d}</div>` : ""}
+          ${c.p ? `<div class="plus"><b class="lab">Pour aller plus loin</b>${c.p}</div>` : ""}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="actions"><button class="go reveal" id="reveal">Voir la réponse</button></div>
+  <p class="keys">Espace : retourner · 1 : raté · 2 : presque · 3 : je savais</p>`;
+  $("#quit").onclick = () => { save(); home(); };
+  $("#flip").onclick = doFlip;
+  $("#reveal").onclick = doFlip;
+}
+function doFlip(){
+  if (view !== "flip") return;
+  F.flipped = !F.flipped;
+  $("#flip").classList.toggle("flipped", F.flipped);
+  if (F.flipped && !$("#rate")) {
+    $("#actions").innerHTML = `<div class="rate" id="rate">
+      <button class="r0" data-r="0">Raté<small>reviendra vite</small></button>
+      <button class="r1" data-r="1">Presque<small>reviendra</small></button>
+      <button class="r2" data-r="2">Je savais<small>+10 XP</small></button></div>`;
+    app.querySelectorAll("[data-r]").forEach(b => b.onclick = e => { e.stopPropagation(); rateFlip(+b.dataset.r); });
+  }
+}
+function rateFlip(r){
+  const id = F.queue[F.i];
+  grade(id, r);
+  if (!(id in F.res)) F.res[id] = r;
+  let gain;
+  if (r === 2) { F.combo++; S.bestStreak = Math.max(S.bestStreak, F.combo); gain = 10 + Math.min(F.combo - 1, 5) * 2; }
+  else { F.combo = 0; gain = r === 1 ? 4 : 1; }
+  addXP(gain);
+  // les cartes ratées reviennent dans la même session
+  const n = F.requeue[id] || 0;
+  if (r === 0 && n < 3) { F.queue.splice(Math.min(F.queue.length, F.i + 4), 0, id); F.requeue[id] = n + 1; }
+  else if (r === 1 && n < 1) { F.queue.splice(Math.min(F.queue.length, F.i + 7), 0, id); F.requeue[id] = n + 1; }
+  if (!F.queue.slice(F.i + 1).includes(id)) F.done++;
+  F.i++;
+  save(); checkBadges();
+  renderFlip();
+  if (F.combo >= 2) { const el = $("#combo"); if (el) el.classList.add("pop"); }
+}
+function endFlip(){
+  view = "end"; track("session-flipcards");
+  const ids = Object.keys(F.res);
+  report("Flip cards", ids.filter(i => F.res[i] === 2).length, ids.length, F.res, F.t0);
+  const k = ids.filter(i => F.res[i] === 0), m = ids.filter(i => F.res[i] === 1), o = ids.filter(i => F.res[i] === 2);
+  const toReview = k.concat(m);
+  const msg = o.length === ids.length ? "Parfait !" : o.length / ids.length >= .7 ? "Très bien !" : o.length / ids.length >= .4 ? "Bon travail" : "Continuez !";
+  app.innerHTML = `
+  <div class="endcard fade-in">
+    <div><span class="ftag" style="--c:var(--accent);color:var(--accent)">Session terminée</span><h2>${msg}</h2></div>
+    <div class="endstats">
+      <div class="stat"><b class="o">${o.length}</b><span>du premier coup</span></div>
+      <div class="stat"><b class="m">${m.length}</b><span>presque</span></div>
+      <div class="stat"><b class="k">${k.length}</b><span>ratées au départ</span></div>
+      <div class="stat"><b class="x">+${S.xp - F.xp0}</b><span>XP gagnés</span></div>
+    </div>
+    ${toReview.length ? `<div><h3 style="font-family:var(--f-display);text-transform:uppercase;font-size:20px;margin-bottom:8px">À retenir</h3>
+      <div class="miss">${toReview.map(i => { const c = byId[i], th = THEMES[c.t]; return `<details style="--c:${th.color}"><summary><span class="ftag">${esc(th.short)}</span>${strip(c.q)}</summary><p><b>${c.a}</b></p>${c.d ? `<div style="margin-top:8px">${c.d}</div>` : ""}</details>`; }).join("")}</div></div>` : ""}
+    <div class="row">
+      ${toReview.length ? `<button class="go" id="again">${ico("loop",18)} Rejouer ces ${toReview.length} cartes</button>` : ""}
+      <button class="go alt" id="more">Nouvelle session</button>
+      <button class="go alt" id="back">Accueil</button>
+    </div>
+  </div>`;
+  if (toReview.length) $("#again").onclick = () => startFlip(shuffle(toReview));
+  $("#more").onclick = () => { const p = pool(); startFlip(pick(p, S.size === "Tout" ? p.length : S.size).map(c => c.id)); };
+  $("#back").onclick = home;
+  if (o.length === ids.length && ids.length >= 5) confetti();
+  window.scrollTo(0, 0);
+}
+
+/* =========================================================
+   QCM
+   ========================================================= */
+let Q = null, timerRAF = 0;
+function qcmPool(){ return pool().filter(c => c.s && c.x && c.x.length >= 3); }
+function stopTimer(){ cancelAnimationFrame(timerRAF); }
+function startQcm(){
+  const list = pick(qcmPool(), 10);
+  Q = {list, i: 0, score: 0, xp0: S.xp, wrong: [], res: {}, t0: Date.now()};
+  view = "qcm"; renderQcm();
+}
+function optionsFor(c){
+  if (c.x) return shuffle([{id: c.id, s: c.s}].concat(c.x.slice(0, 3).map((s, i) => ({id: "_x" + i, s}))));
+  const same = CARDS.filter(x => x.g === c.g && x.s && x.s !== c.s && x.id !== c.id);
+  const uniq = []; shuffle(same).forEach(x => { if (!uniq.some(u => u.s === x.s)) uniq.push(x); });
+  return shuffle([c].concat(uniq.slice(0, 3)));
+}
+function qcmQuestion(c){
+  if (c.g === "def") return "Quelle est la bonne définition de " + c.q.replace(/^Définissez\s*:\s*/, "") + " ?";
+  return c.q;
+}
+function renderQcm(){
+  if (Q.i >= Q.list.length) return endQcm();
+  const c = Q.list[Q.i], th = THEMES[c.t], opts = optionsFor(c);
+  app.innerHTML = `
+  <div class="sess-head">
+    <button class="ghost" id="quit" aria-label="Retour à l'accueil">${ico("back",16)}</button>
+    <div class="prog" aria-hidden="true"><i style="width:${pct(Q.i / Q.list.length)}%"></i></div>
+    <span class="sess-count">${Q.i + 1}/${Q.list.length}</span>
+    <span class="combo">${Q.score} pt${Q.score > 1 ? "s" : ""}</span>
+  </div>
+  <div class="face fade-in" style="--c:${th.color};min-height:0">
+    <div class="fhead"><span class="ftag">Défi · ${esc(th.short)}</span><span class="fbox">bonus vitesse</span></div>
+    <div class="timer"><i id="tbar"></i></div>
+    <div class="ruled" style="padding-block:14px"><div class="q" style="padding-block:6px;font-size:clamp(19px,3vw,24px)">${qcmQuestion(c)}</div></div>
+  </div>
+  <div class="qcm-opts">${opts.map((o, i) => `<button class="opt" data-id="${o.id}"><span class="l">${"ABCD"[i]}</span><span>${esc(o.s)}</span></button>`).join("")}</div>
+  <div id="fb"></div>`;
+  $("#quit").onclick = () => { stopTimer(); save(); home(); };
+  const t0 = performance.now(), LIM = 10000;
+  stopTimer();
+  (function tk(){ const e = performance.now() - t0, bar = $("#tbar"); if (!bar) return; bar.style.width = Math.max(0, 100 - e / LIM * 100) + "%"; if (e < LIM) timerRAF = requestAnimationFrame(tk); })();
+  app.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    stopTimer();
+    const fast = performance.now() - t0 < LIM;
+    const ok = b.dataset.id === c.id;
+    app.querySelectorAll(".opt").forEach(x => { x.disabled = true; if (x.dataset.id === c.id) x.classList.add("good"); });
+    if (!ok) b.classList.add("bad");
+    grade(c.id, ok ? 2 : 0); Q.res[c.id] = ok ? 2 : 0;
+    let gain = 0;
+    if (ok) { Q.score++; gain = 12 + (fast ? 5 : 0); } else Q.wrong.push(c.id);
+    if (gain) addXP(gain);
+    save();
+    $("#fb").innerHTML = `<div class="feedback ${ok ? "" : "ko"} fade-in"><b class="v" style="color:${ok ? "var(--ok)" : "var(--ko)"}">${ok ? (fast ? "Bonne réponse, et rapide !" : "Bonne réponse") : "Pas tout à fait"}</b>
+      <div><b>${c.a}</b></div>${c.d ? `<div style="margin-top:4px">${c.d}</div>` : ""}</div>
+      <button class="go" id="next" style="width:100%;margin-top:12px">${Q.i + 1 < Q.list.length ? "Question suivante" : "Voir mon score"} ${ico("arrow",18)}</button>`;
+    $("#next").onclick = () => { Q.i++; renderQcm(); };
+    $("#next").focus({preventScroll:true});
+    checkBadges();
+  });
+}
+function endQcm(){
+  view = "end"; track("session-qcm"); report("QCM", Q.score, Q.list.length, Q.res, Q.t0);
+  const perfect = Q.score === Q.list.length && Q.list.length >= 10;
+  if (perfect) addXP(30);
+  save(); checkBadges({qcmPerfect: perfect});
+  app.innerHTML = `
+  <div class="endcard fade-in">
+    <div><span class="ftag" style="color:var(--accent)">Défi QCM terminé</span><h2>${Q.score}/${Q.list.length}${perfect ? " · Sans faute !" : ""}</h2></div>
+    <div class="endstats">
+      <div class="stat"><b class="o">${Q.score}</b><span>bonnes réponses</span></div>
+      <div class="stat"><b class="k">${Q.wrong.length}</b><span>erreurs</span></div>
+      <div class="stat"><b class="x">+${S.xp - Q.xp0}</b><span>XP gagnés</span></div>
+      <div class="stat"><b>${pct(mastery(CARDS))} %</b><span>maîtrise globale</span></div>
+    </div>
+    ${Q.wrong.length ? `<div class="miss">${Q.wrong.map(i => { const c = byId[i], th = THEMES[c.t]; return `<details style="--c:${th.color}"><summary><span class="ftag">${esc(th.short)}</span>${strip(qcmQuestion(c))}</summary><p><b>${c.a}</b></p></details>`; }).join("")}</div>` : ""}
+    <div class="row">
+      ${Q.wrong.length ? `<button class="go" id="again">${ico("flip",18)} Retravailler mes erreurs en flip cards</button>` : ""}
+      <button class="go alt" id="more">Nouveau défi</button>
+      <button class="go alt" id="back">Accueil</button>
+    </div>
+  </div>`;
+  if (Q.wrong.length) $("#again").onclick = () => startFlip(shuffle(Q.wrong));
+  $("#more").onclick = startQcm;
+  $("#back").onclick = home;
+  if (perfect) confetti();
+  window.scrollTo(0, 0);
+}
+
+/* =========================================================
+   ÉVALUATION BLANCHE
+   ========================================================= */
+const EXAM_N = Object.values(EXAM_PLAN).reduce((x, y) => x + y, 0);
+let E = null, examTick = 0;
+// Transforme une carte de l'appli ou une question essentielle en question d'évaluation
+function examItem(src){
+  if (typeof src === "string" || src.card) {
+    const c = byId[typeof src === "string" ? src : src.card];
+    return {t: c.t, cid: c.id, q: qcmQuestion(c), ok: c.s, opts: optionsFor(c).map(o => o.s), expl: c.a + (c.d ? "<br>" + c.d : "")};
+  }
+  const c = src.c && byId[src.c];
+  return {t: src.t, cid: c ? c.id : null, q: src.q, ok: src.ok, opts: shuffle([src.ok].concat(src.x)), expl: c ? c.a + (c.d ? "<br>" + c.d : "") : ""};
+}
+function startExam(){
+  const list = [];
+  Object.entries(EXAM_PLAN).forEach(([k, n]) => {
+    shuffle(ESSENTIELS[k].filter(x => typeof x !== "string" || byId[x]).filter(x => !(x && x.card) || byId[x.card])).slice(0, n).forEach(x => list.push(examItem(x)));
+  });
+  E = {list: shuffle(list), i: 0, answers: {}, t0: Date.now(), xp0: S.xp};
+  view = "exam"; renderExam();
+  clearInterval(examTick);
+  examTick = setInterval(() => { const el = $("#chrono"); if (el) el.textContent = mmss(Date.now() - E.t0); else clearInterval(examTick); }, 1000);
+}
+const mmss = ms => { const s = Math.floor(ms / 1000); return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0"); };
+function renderExam(){
+  const c = E.list[E.i], th = THEMES[c.t], opts = c.opts, chosen = E.answers[E.i];
+  app.innerHTML = `
+  <div class="sess-head">
+    <button class="ghost" id="quit" aria-label="Abandonner l'évaluation">${ico("back",16)}</button>
+    <div class="prog" aria-hidden="true"><i style="width:${pct(E.i / E.list.length)}%"></i></div>
+    <span class="sess-count">${E.i + 1}/${E.list.length}</span>
+    <span class="combo mono" id="chrono" title="Temps écoulé">${mmss(Date.now() - E.t0)}</span>
+  </div>
+  <div class="face fade-in" style="--c:${th.color};min-height:0">
+    <div class="fhead"><span class="ftag">Évaluation blanche · ${esc(th.short)}</span><span class="fbox">sans correction immédiate</span></div>
+    <div class="ruled" style="padding-block:14px"><div class="q" style="padding-block:6px;font-size:clamp(19px,3vw,24px)">${c.q}</div></div>
+  </div>
+  <div class="qcm-opts">${opts.map((o, i) => `<button class="opt${chosen === i ? " chosen" : ""}" data-i="${i}" aria-pressed="${chosen === i}"><span class="l">${"ABCD"[i]}</span><span>${esc(o)}</span></button>`).join("")}</div>
+  <div class="row" style="margin-top:14px">
+    ${E.i > 0 ? `<button class="go alt" id="prev">${ico("back",18)} Précédente</button>` : ""}
+    <button class="go" id="next" ${chosen !== undefined ? "" : "disabled"}>${E.i + 1 < E.list.length ? "Question suivante" : "Terminer et voir ma note"} ${ico("arrow",18)}</button>
+  </div>
+  <div id="quitBox"></div>`;
+  app.querySelectorAll(".opt").forEach(b => b.onclick = () => { E.answers[E.i] = +b.dataset.i; renderExam(); });
+  $("#next").onclick = () => { if (E.i + 1 < E.list.length) { E.i++; renderExam(); } else endExam(); };
+  const pv = $("#prev"); if (pv) pv.onclick = () => { E.i--; renderExam(); };
+  $("#quit").onclick = () => {
+    $("#quitBox").innerHTML = `<div class="confirm-box" style="margin-top:14px"><span>Abandonner l'évaluation ? Vos réponses ne seront pas comptées.</span><button class="danger" id="qYes">Abandonner</button><button class="ghost" id="qNo">Continuer</button></div>`;
+    $("#qYes").onclick = () => { clearInterval(examTick); home(); };
+    $("#qNo").onclick = () => { $("#quitBox").innerHTML = ""; };
+  };
+  window.scrollTo(0, 0);
+}
+function endExam(){
+  clearInterval(examTick);
+  view = "end";
+  const dur = Date.now() - E.t0;
+  const res = {}; let ok = 0;
+  const notions = {};
+  E.list.forEach((c, i) => {
+    c.mine = c.opts[E.answers[i]];
+    const good = c.mine === c.ok; c.good = good; if (good) ok++;
+    if (c.cid) { res[c.cid] = good ? 2 : 0; grade(c.cid, good ? 2 : 0); }
+    const n = notions[c.t] || (notions[c.t] = {ok: 0, tot: 0}); n.tot++; if (good) n.ok++;
+  });
+  const note = Math.round(ok / E.list.length * 40) / 2;
+  addXP(ok * 8 + (note >= 16 ? 30 : 0));
+  report("Évaluation blanche", ok, E.list.length, res);
+  S.examBest = Math.max(S.examBest || 0, note); save(); checkBadges();
+  const wrong = E.list.filter(c => !c.good);
+  const msg = note >= 16 ? "Excellent, vous êtes prêt !" : note >= 12 ? "Bien, encore un petit effort" : note >= 8 ? "Des bases, mais il faut réviser" : "À retravailler avant l'évaluation";
+  app.innerHTML = `
+  <div class="endcard fade-in">
+    <div><span class="ftag" style="color:var(--accent)">Évaluation blanche · ${mmss(dur)}</span>
+      <h2 class="note20">${String(note).replace(".", ",")}<small>/20</small></h2><p class="muted" style="margin:6px 0 0;font-size:15px">${msg} · ${ok} bonne${ok > 1 ? "s" : ""} réponse${ok > 1 ? "s" : ""} sur ${E.list.length}</p></div>
+    <div><h3 style="font-family:var(--f-display);text-transform:uppercase;font-size:20px;margin-bottom:8px">Bilan par notion</h3>
+      <div class="tbars">${Object.entries(notions).map(([t, n]) => `<div class="tbar" style="--c:${THEMES[t].color}"><span>${esc(THEMES[t].label)}</span><div class="mbar"><i style="width:${pct(n.ok / n.tot)}%"></i></div><b>${n.ok}/${n.tot}</b></div>`).join("")}</div></div>
+    ${wrong.length ? `<div><h3 style="font-family:var(--f-display);text-transform:uppercase;font-size:20px;margin-bottom:8px">Corrigé de vos erreurs</h3>
+      <div class="miss">${wrong.map(c => { const th = THEMES[c.t]; return `<details style="--c:${th.color}" open><summary><span class="ftag">${esc(th.short)}</span>${strip(c.q)}</summary><p class="muted">Votre réponse : ${esc(c.mine || "—")}</p><p><b>Bonne réponse : ${esc(c.ok)}</b></p>${c.expl ? `<div style="margin-top:4px">${c.expl}</div>` : ""}</details>`; }).join("")}</div>
+      <p class="muted" style="font-size:14px;margin:10px 0 0">Ces cartes reviendront demain dans « Cartes à revoir aujourd'hui ».</p></div>` : ""}
+    <div class="row">
+      ${wrong.length ? `<button class="go" id="again">${ico("flip",18)} Retravailler mes erreurs maintenant</button>` : ""}
+      <button class="go alt" id="more">Nouvelle évaluation blanche</button>
+      <button class="go alt" id="back">Accueil</button>
+    </div>
+  </div>`;
+  const wrongIds = [...new Set(wrong.map(c => c.cid).filter(Boolean))];
+  if (wrong.length) { const ag = $("#again"); if (wrongIds.length) ag.onclick = () => startFlip(shuffle(wrongIds)); else ag.remove(); }
+  $("#more").onclick = startExam;
+  $("#back").onclick = home;
+  if (note >= 16) confetti();
+  window.scrollTo(0, 0);
+}
+
+/* =========================================================
+   OUTILS COMMUNS AUX MODES GÉOGRAPHIE
+   ========================================================= */
+function head(done, total, count, right){
+  return `<div class="sess-head">
+    <button class="ghost" id="quit" aria-label="Retour à l'accueil">${ico("back",16)}</button>
+    <div class="prog" aria-hidden="true"><i style="width:${pct(done / total)}%"></i></div>
+    <span class="sess-count">${count}</span>
+    <span class="combo" id="combo">${right || ""}</span>
+  </div>`;
+}
+function bindQuit(){ const q = $("#quit"); if (q) q.onclick = () => { save(); home(); }; }
+function intro(color, tag, box, text, still){
+  return `<div class="face${still ? "" : " fade-in"}" style="--c:${color};min-height:0"><div class="fhead"><span class="ftag">${tag}</span><span class="fbox">${box}</span></div>
+    <div class="ruled" style="padding-block:14px"><div class="q" style="padding-block:6px;font-size:clamp(19px,3vw,24px)">${text}</div></div></div>`;
+}
+function endCard(o){
+  app.innerHTML = `
+  <div class="endcard fade-in">
+    <div><span class="ftag" style="color:var(--accent)">${o.tag}</span><h2>${o.title}</h2></div>
+    <div class="endstats">
+      <div class="stat"><b class="o">${o.ok}</b><span>${o.okLabel || "bonnes réponses"}</span></div>
+      <div class="stat"><b class="k">${o.ko}</b><span>erreurs</span></div>
+      <div class="stat"><b class="x">+${o.xp}</b><span>XP gagnés</span></div>
+      <div class="stat"><b>${pct(mastery(CARDS))} %</b><span>maîtrise globale</span></div>
+    </div>
+    ${o.miss || ""}
+    <div class="row">
+      <button class="go" id="again">${ico("loop",18)} ${o.again}</button>
+      <button class="go alt" id="back">Accueil</button>
+    </div>
+  </div>`;
+  $("#again").onclick = o.retry; $("#back").onclick = home;
+  window.scrollTo(0, 0);
+}
+
+/* =========================================================
+   VRAI OU FAUX
+   ========================================================= */
+let V = null;
+function startVf(){ V = {items: shuffle(VF).slice(0, 10), i: 0, score: 0, combo: 0, xp0: S.xp, wrong: []}; view = "vf"; renderVf(); }
+function renderVf(){
+  if (V.i >= V.items.length) return endVf();
+  const it = V.items[V.i];
+  app.innerHTML = `${head(V.i, V.items.length, `${V.i + 1}/${V.items.length}`, V.combo >= 2 ? "×" + V.combo : "")}
+  ${intro("var(--c-orga)", "Vrai ou faux", "attention aux pièges", "« " + esc(it.s) + " »")}
+  <div class="rate two"><button class="r2" data-v="1">Vrai<small>c'est juste</small></button><button class="r0" data-v="0">Faux<small>il y a une erreur</small></button></div>
+  <div id="fb"></div>`;
+  bindQuit();
+  app.querySelectorAll("[data-v]").forEach(b => b.onclick = () => {
+    const v = b.dataset.v === "1", good = v === it.v;
+    app.querySelectorAll("[data-v]").forEach(x => { x.disabled = true; if (x === b) x.classList.add("picked"); });
+    if (good) { V.score++; V.combo++; S.bestStreak = Math.max(S.bestStreak, V.combo); addXP(8 + Math.min(V.combo - 1, 5)); }
+    else { V.combo = 0; V.wrong.push(it); }
+    markDay(); save(); checkBadges();
+    $("#fb").innerHTML = `<div class="feedback ${good ? "" : "ko"} fade-in"><b class="v" style="color:${good ? "var(--ok)" : "var(--ko)"}">${good ? "Bien vu !" : "Raté !"} C'est ${it.v ? "vrai" : "faux"}.</b><div>${it.e}</div></div>
+      <button class="go" id="next" style="width:100%;margin-top:12px">${V.i + 1 < V.items.length ? "Affirmation suivante" : "Voir mon score"} ${ico("arrow",18)}</button>`;
+    $("#next").onclick = () => { V.i++; renderVf(); };
+    $("#next").focus({preventScroll:true});
+  });
+}
+function endVf(){
+  view = "end"; track("session-vrai-faux"); report("Vrai ou faux", V.score, V.items.length, {vf: V.score});
+  const perfect = V.score === V.items.length;
+  if (perfect) { addXP(20); confetti(); }
+  save(); checkBadges();
+  endCard({tag:"Vrai ou faux terminé", title:`${V.score}/${V.items.length}${perfect ? " · Aucun piège !" : ""}`, ok:V.score, ko:V.wrong.length, xp:S.xp - V.xp0,
+    miss: V.wrong.length ? `<div class="miss">${V.wrong.map(it => `<details style="--c:var(--c-orga)" open><summary><span class="ftag">${it.v ? "Vrai" : "Faux"}</span>${esc(it.s)}</summary><p>${it.e}</p></details>`).join("")}</div>` : "",
+    again:"Nouvelle série", retry:startVf});
+}
+
+/* =========================================================
+   SCHÉMA À COMPLÉTER
+   ========================================================= */
+let SC = null;
+function startSchema(){ SC = {placed: {}, sel: null, checked: false, order: shuffle(LABELS.map(l => l.l)), xp0: S.xp}; view = "schema"; renderSchema(); }
+function renderSchema(){
+  const P = SC.placed, used = Object.values(P), score = SLOTS.filter(s => P[s.s] === s.ans).length, perfect = score === SLOTS.length;
+  const name = l => esc(LABELS.find(x => x.l === l).n);
+  const lbl = l => `<button class="lbl${SC.sel === l ? " sel" : ""}" data-l="${l}">${name(l)}</button>`;
+  const row = s => {
+    const st = SC.checked ? (P[s.s] === s.ans ? " good" : " bad") : "";
+    return `<div class="lrow">${s.fig ? `<span class="fig">${s.fig}</span>` : `<span class="eqt">${s.eq}</span>`}<div class="slot${st}" data-s="${s.s}">${P[s.s] ? lbl(P[s.s]) : ""}</div></div>
+      ${SC.checked && st === " bad" ? `<div class="corr${s.eq ? " eqc" : ""}">→ ${name(s.ans)}</div>` : ""}`;
+  };
+  const grp = g => SLOTS.filter(s => s.g === g).map(row).join("");
+  app.innerHTML = `${head(used.length, SLOTS.length, `${used.length}/${SLOTS.length}`, "")}
+  ${intro("var(--c-etal)", "Schéma à compléter", "9 étiquettes à placer",
+    SC.checked ? (perfect ? "Schéma parfait !" : `${score}/${SLOTS.length} bien placées : les erreurs sont en rouge.`) : "Glissez chaque étiquette dans la bonne case de la légende. Vous pouvez aussi toucher une étiquette, puis une case.", SC.drawn && !SC.checked)}
+  <div class="sch${SC.sel ? " target" : ""}">
+    <div class="sch-draw"><span class="ftag">Schéma d'une aire urbaine</span>${SCHEMA_SVG}</div>
+    <div>
+      <div class="face" style="--c:var(--c-etal);min-height:0"><div class="fhead"><span class="ftag">Légende</span></div>
+        <div class="leg"><h5>I. Les espaces</h5>${grp(1)}<h5>II. Les mobilités et les évolutions</h5>${grp(2)}<h5>III. Les ensembles</h5>${grp(3)}</div></div>
+      ${SC.checked ? "" : `<div class="bank" id="bank">${SC.order.filter(l => !used.includes(l)).map(lbl).join("")}</div>`}
+    </div>
+  </div>
+  ${SC.checked ? `<div class="feedback ${perfect ? "" : "ko"} fade-in"><b class="v" style="color:${perfect ? "var(--ok)" : "var(--ko)"}">${score}/${SLOTS.length} · Correction</b><ul>${SLOTS.map(s => `<li>${s.e}</li>`).join("")}</ul></div>
+    <div class="row" style="margin-top:14px"><button class="go" id="again">${ico("loop",18)} Refaire le schéma</button><button class="go alt" id="back">Accueil</button></div>`
+  : `<div class="row" style="margin-top:14px"><button class="go" id="check" ${used.length < SLOTS.length ? "disabled" : ""}>Vérifier mon schéma ${ico("arrow",18)}</button></div>`}`;
+  SC.drawn = true;
+  bindQuit();
+  if (SC.checked) { $("#again").onclick = startSchema; $("#back").onclick = home; return; }
+  $("#check").onclick = () => {
+    SC.checked = true; track("session-schema"); report("Schéma", score, SLOTS.length, {schema: score});
+    let gain = score * 4;
+    if (perfect) { gain += 20; S.schemaPerfect = (S.schemaPerfect || 0) + 1; confetti(); }
+    addXP(gain); markDay(); save(); checkBadges(); renderSchema(); window.scrollTo(0, 0);
+  };
+  bindDrag();
+}
+function placeLbl(l, s){ const P = SC.placed; for (const k in P) if (P[k] === l) delete P[k]; P[s] = l; SC.sel = null; keepScroll(renderSchema); }
+function unplaceLbl(l){ const P = SC.placed; for (const k in P) if (P[k] === l) delete P[k]; SC.sel = null; keepScroll(renderSchema); }
+function tapLbl(l){ if (Object.values(SC.placed).includes(l)) { unplaceLbl(l); return; } SC.sel = SC.sel === l ? null : l; keepScroll(renderSchema); }
+function keepScroll(fn){ const y = window.scrollY; fn(); window.scrollTo(0, y); }
+function bindDrag(){
+  const under = (x, y, sel) => { const el = document.elementFromPoint(x, y); return el && el.closest(sel); };
+  app.querySelectorAll(".lbl[data-l]").forEach(ch => {
+    ch.addEventListener("click", e => { if (e.detail === 0) tapLbl(ch.dataset.l); });
+    ch.addEventListener("pointerdown", e => {
+      if (e.button > 0) return; e.preventDefault();
+      const sx = e.clientX, sy = e.clientY; let gh = null, moved = false;
+      const mv = ev => {
+        if (!moved && Math.hypot(ev.clientX - sx, ev.clientY - sy) > 7) {
+          moved = true; gh = ch.cloneNode(true); gh.classList.add("dragghost"); gh.classList.remove("sel");
+          gh.style.width = ch.offsetWidth + "px"; document.body.appendChild(gh); ch.classList.add("dragging");
+        }
+        if (moved) { if (ev.clientY < 70) scrollBy(0, -14); else if (ev.clientY > innerHeight - 70) scrollBy(0, 14);
+          gh.style.left = ev.clientX + "px"; gh.style.top = ev.clientY + "px"; const t = under(ev.clientX, ev.clientY, ".slot"); app.querySelectorAll(".slot").forEach(s => s.classList.toggle("hover", s === t)); }
+      };
+      const up = ev => {
+        removeEventListener("pointermove", mv); removeEventListener("pointerup", up); removeEventListener("pointercancel", up);
+        if (moved) {
+          gh.remove(); ch.classList.remove("dragging");
+          const t = under(ev.clientX, ev.clientY, ".slot");
+          if (t) placeLbl(ch.dataset.l, t.dataset.s); else if (under(ev.clientX, ev.clientY, "#bank")) unplaceLbl(ch.dataset.l); else keepScroll(renderSchema);
+        } else if (ev.type === "pointerup") tapLbl(ch.dataset.l);
+      };
+      addEventListener("pointermove", mv); addEventListener("pointerup", up); addEventListener("pointercancel", up);
+    });
+  });
+  app.querySelectorAll(".slot").forEach(s => s.addEventListener("click", e => { if (e.target.closest(".lbl")) return; if (SC.sel) placeLbl(SC.sel, s.dataset.s); }));
+}
+
+/* =========================================================
+   CONSTRUIRE UN PLAN
+   ========================================================= */
+let PL = null;
+function planPick(){
+  view = "planpick";
+  app.innerHTML = `<div class="sess-head"><button class="ghost" id="quit" aria-label="Retour à l'accueil">${ico("back",16)}</button></div>
+  ${intro("var(--c-methode)", "Construire un plan", "développement construit", "Choisissez un sujet. Rangez chaque idée dans la bonne partie et repérez l'idée hors sujet (✕).")}
+  <div class="subj">${PLANS.map((p, i) => `<button class="ev" data-p="${i}" style="--c:var(--c-methode)"><span class="n">${i + 1}</span><span><span class="tg">Sujet possible</span>${esc(p.s)}</span></button>`).join("")}</div>`;
+  bindQuit();
+  app.querySelectorAll("[data-p]").forEach(b => b.onclick = () => startPlan(+b.dataset.p));
+  window.scrollTo(0, 0);
+}
+function startPlan(i){ PL = {p: i, as: {}, checked: false, order: shuffle(PLANS[i].ideas.map((_, k) => k)), xp0: S.xp}; view = "plan"; renderPlan(); window.scrollTo(0, 0); }
+function renderPlan(){
+  const P = PLANS[PL.p], as = PL.as, n = Object.keys(as).length, tot = P.ideas.length;
+  const ok = k => as[k] === P.ideas[k].p, score = P.ideas.filter((_, k) => ok(k)).length, perfect = score === tot;
+  app.innerHTML = `${head(n, tot, `${n}/${tot}`, "")}
+  <div class="face${PL.drawn ? "" : " fade-in"}" style="--c:var(--c-methode);min-height:0"><div class="fhead"><span class="ftag">Sujet possible</span><span class="fbox">${tot} idées à ranger</span></div>
+    <div class="ruled" style="padding-block:14px"><div class="q" style="padding-block:4px;font-size:clamp(18px,2.8vw,22px)">« ${esc(P.s)} »</div>
+    <div class="skel">${P.parts.map((t, i) => `<div><b>${ROMAN[i]}.</b>${esc(t)}</div>`).join("")}<div class="muted"><b>✕</b>Hors sujet</div></div></div></div>
+  ${PL.order.map(k => { const id = P.ideas[k], st = PL.checked ? (ok(k) ? " right" : " wrong") : "";
+    return `<div class="idea${st}"><p>${esc(id.t)}${PL.checked && !ok(k) ? `<span class="why">→ ${id.p < 0 ? "Hors sujet : " + esc(id.w) : "Partie " + ROMAN[id.p] + " : " + esc(P.parts[id.p])}</span>` : ""}</p>
+      <div class="seg" role="group" aria-label="Partie">${[...P.parts.map((_, i) => i), -1].map(v => `<button data-k="${k}" data-v="${v}" aria-pressed="${as[k] === v}" ${PL.checked ? "disabled" : ""}>${v < 0 ? "✕" : ROMAN[v]}</button>`).join("")}</div></div>`; }).join("")}
+  ${PL.checked ? `<div class="feedback ${perfect ? "" : "ko"} fade-in"><b class="v" style="color:${perfect ? "var(--ok)" : "var(--ko)"}">${score}/${tot} idées bien placées</b><div style="margin-bottom:8px">Voici le plan modèle, à savoir refaire le jour de l'évaluation :</div>${planHtml(P)}</div>
+    <div class="row" style="margin-top:14px"><button class="go" id="other">Autre sujet ${ico("arrow",18)}</button><button class="go alt" id="back">Accueil</button></div>`
+  : `<div class="row" style="margin-top:14px"><button class="go" id="check" ${n < tot ? "disabled" : ""}>Vérifier mon plan ${ico("arrow",18)}</button></div>`}`;
+  PL.drawn = true;
+  bindQuit();
+  if (PL.checked) { $("#other").onclick = planPick; $("#back").onclick = home; return; }
+  app.querySelectorAll("[data-k]").forEach(b => b.onclick = () => { PL.as[+b.dataset.k] = +b.dataset.v; keepScroll(renderPlan); });
+  $("#check").onclick = () => {
+    PL.checked = true; track("session-plan"); report("Plan", score, tot, {plan: score});
+    let gain = score * 3; if (perfect) { gain += 15; confetti(); }
+    addXP(gain); markDay(); save(); checkBadges(); keepScroll(renderPlan);
+  };
+}
+
+/* =========================================================
+   RELIRE TOUTES LES CARTES
+   ========================================================= */
+function listView(){
+  view = "list";
+  app.innerHTML = `<div class="sess-head"><button class="ghost" id="quit">${ico("back",16)} Bilan</button></div>
+  <div class="sec-title" style="margin-top:0"><h3>Toutes les cartes</h3><span class="muted" style="font-size:14px">${CARDS.length} cartes · ${VF.length} vrai ou faux</span></div>
+  ${Object.entries(THEMES).map(([k, t]) => `<div class="sec-title"><h3 style="color:${t.color};font-size:19px">${esc(t.label)}</h3></div>
+    <div class="miss">${inTheme(k).map(c => `<details style="--c:${t.color}"><summary><span class="ftag">${c.aj ? "Ajout" : esc(t.short)}</span>${strip(c.q)}</summary><p><b>${c.a}</b></p>${c.d ? `<div style="margin-top:6px">${c.d}</div>` : ""}${c.p ? `<div style="margin-top:6px" class="muted">${c.p}</div>` : ""}</details>`).join("")}</div>`).join("")}`;
+  $("#quit").onclick = badgesView;
+  window.scrollTo(0, 0);
+}
+
+/* =========================================================
+   BADGES ET BILAN
+   ========================================================= */
+function badgesView(){
+  view = "badges"; confirmReset = false; renderBadges();
+}
+function renderBadges(){
+  const lv = level(), g = mastery(CARDS);
+  app.innerHTML = `
+  <div class="sess-head"><button class="ghost" id="quit">${ico("back",16)} Accueil</button></div>
+  <section class="bilan fade-in">
+    ${g >= .7 ? `<span class="stamp">Prêt !</span>` : ""}
+    <span class="ftag" style="color:var(--accent)">Bilan de révision · G1</span>
+    <h2>Mon bilan</h2>
+    <div class="muted" style="font-size:14.5px">Niveau ${lv.n}/${LEVELS.length} · ${esc(lv.name)} · ${S.xp} XP · ${S.reviewed} cartes révisées · ${Object.keys(S.badges).length}/${BADGES.length} badges</div>
+    <div class="tbars">
+      ${Object.entries(THEMES).map(([k, t]) => { const m = mastery(inTheme(k)); return `<div class="tbar" style="--c:${t.color}"><span>${esc(t.label)}</span><div class="mbar"><i style="width:${pct(m)}%"></i></div><b>${pct(m)}%</b></div>`; }).join("")}
+      <div class="tbar" style="--c:var(--ok);font-weight:700"><span>Total</span><div class="mbar"><i style="width:${pct(g)}%"></i></div><b>${pct(g)}%</b></div>
+    </div>
+  </section>
+  <div class="sec-title"><h3>Badges</h3><span class="muted" style="font-size:14px">${Object.keys(S.badges).length} sur ${BADGES.length}</span></div>
+  <div class="badges-grid">
+    ${BADGES.map(b => { const has = !!S.badges[b.id]; return `<div class="bitem${has ? "" : " locked"}">${medal(b, !has)}<div><b>${esc(b.name)}</b><p>${esc(b.desc)}</p></div></div>`; }).join("")}
+  </div>
+  <div class="sec-title"><h3>Relire toutes les cartes</h3><button class="linkbtn" id="toList">Ouvrir la liste</button></div>
+  <div class="sec-title"><h3>Recommencer à zéro</h3></div>
+  <div class="confirm-box" id="resetZone">
+    ${confirmReset ? `<span>Tout effacer (XP, badges, progression) ?</span><button class="danger" id="yes">Oui, tout effacer</button><button class="ghost" id="no">Annuler</button>`
+      : `<button class="danger" id="reset">Effacer ma progression</button>`}
+  </div>`;
+  $("#quit").onclick = home;
+  $("#toList").onclick = listView;
+  if (confirmReset) { $("#yes").onclick = () => { S = fresh(); save(); home(); }; $("#no").onclick = () => { confirmReset = false; renderBadges(); }; }
+  else $("#reset").onclick = () => { confirmReset = true; renderBadges(); };
+  window.scrollTo(0, 0);
+}
+
+/* ---------- Clavier ---------- */
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT") return;
+  if (view === "flip") {
+    if (e.key === " " || e.key === "Enter") { e.preventDefault(); if (!F.flipped || !$("#rate")) doFlip(); else doFlip(); }
+    if (F && F.flipped && ["1","2","3"].includes(e.key)) rateFlip(+e.key - 1);
+  }
+});
+
+home();
+reportVisit();
+})();
+
+</script>
+<!-- Compteur de visites anonyme (GoatCounter, sans cookies) -->
+<script data-goatcounter="https://jeannehg.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
