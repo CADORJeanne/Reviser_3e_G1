@@ -373,8 +373,7 @@ const THEMES = {
   reperes: {label:"Repères et lieux",               short:"Repère",          color:"var(--c-reperes)"},
   orga:    {label:"Organisation de l'aire urbaine", short:"Organisation",    color:"var(--c-orga)"},
   etal:    {label:"L'étalement urbain",             short:"Étalement",       color:"var(--c-etal)"},
-  metro:   {label:"La métropolisation",             short:"Métropolisation", color:"var(--c-metro)"},
-  methode: {label:"Sujets possibles",               short:"Sujet possible",  color:"var(--c-methode)"}
+  metro:   {label:"La métropolisation",             short:"Métropolisation", color:"var(--c-metro)"}
 };
 
 /* t = thème, q = question, a = réponse, d = corrigé détaillé, p = pour aller plus loin,
@@ -525,8 +524,6 @@ function planHtml(p){
     p.parts.map((t, i) => `<div class="pl-p"><b>${ROMAN[i]}. ${t}</b><ul>${p.ideas.filter(x => x.p === i).map(x => `<li>${x.t}</li>`).join("")}</ul></div>`).join("") +
     `<div class="pl-i"><b>Conclusion</b>${p.concl}</div></div>`;
 }
-PLANS.forEach((p, i) => CARDS.push({id:"p" + (i + 1), t:"methode", q:`Sujet : « ${p.s} ». Quel plan ?`,
-  a:p.parts.map((t, j) => `${ROMAN[j]}. ${t}`).join("<br>"), d:planHtml(p)}));
 
 /* ================= VRAI OU FAUX ================= */
 const VF = [
@@ -890,7 +887,7 @@ function home(){
       <h4>${ico("quiz",22)} Défi QCM</h4>
       <p>10 questions à choix multiples, corrigées tout de suite. Répondez vite pour gagner un bonus. Objectif : 10/10.</p>
       <button class="go alt" id="goQcm" ${qcmPool().length >= 4 ? "" : "disabled"}>Lancer le défi ${ico("arrow",18)}</button>
-      ${qcmPool().length >= 4 ? "" : `<p style="font-size:12.5px">Sélectionnez au moins un thème autre que « Sujets possibles ».</p>`}
+      ${qcmPool().length >= 4 ? "" : `<p style="font-size:12.5px">Sélectionnez au moins un thème.</p>`}
     </div>
     <div class="mode">
       <h4>${ico("scale",22)} Vrai ou faux</h4>
